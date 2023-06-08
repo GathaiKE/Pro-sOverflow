@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Irish+Grover&family=Roboto&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+input{@apply w-full p-2 active:ring-gold rounded focus:border-none font-medium text-black}
+label{@apply font-bold text-2xl}
+button{@apply p-1 w-btn mx-8 mt-6  font-extrabold rounded-md}
+a{@apply active:text-gold}
+}
