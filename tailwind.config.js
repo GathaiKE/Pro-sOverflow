@@ -26,14 +26,14 @@ module.exports = {
         gold: "#FFD700",
         green:"#008000",
         fade:"#D9D9D9",
-        hero:"rgba(0, 0, 0, 0.7)"
+        hero:"rgba(0, 0, 0, 0.7)",
+        hdr:"rgba(0, 0, 0, 0.85);"
       },
       spacing:{
         hero:"43.75em",
         btn:"18rem",
         cont:"35rem"
       },
-      label:"",
     }
   },
   plugins: [],
