@@ -1,52 +1,210 @@
-<div>
-    <div>
-        <h2>Users</h2>
-        <span>
-            <li>John Doe</li>
-            <button>Remove</button>
-        </span>
-        <span>
-            <li>John Doe</li>
-            <button>Remove</button>
-        </span>
-        <span>
-            <li>Jane Doe</li>
-            <button>Remove</button>
-        </span>
-        <span>
-            <li>Allan Hex</li>
-            <button>Remove</button>
-        </span>
-        <span>
-            <li>Delvin Mark</li>
-            <button>Remove</button>
-        </span>
-        <span>
-            <li>Missy Mane</li>
-            <button>Remove</button>
-        </span>
-        <span>
-            <li>Chris Mdosi</li>
-            <button>Remove</button>
-        </span>
-    </div>
-    <div>
-        <h2>Questions</h2>
-        <div>
-            <div>
-                <span> 5 Votes</span>
-                <span>5 Answers</span>
+<app-header></app-header>
+<div class="flex">
+    <app-menu></app-menu>
+    <div class="bg-black w-full h-screen text-white flex p-8 border-l-2 border-white">
+        <div class="w-1/3 overflow-y-auto">
+            <h2 class="font-irish text-xl font-bold text-center underline underline-offset-4">Users</h2>
+            <span class="flex list-none justify-between border-b-2 border-primary-light pb-3 hover:opacity-80">
+                <li class="font-md">John Doe</li>
+                <button class="bg-gray-300 text-black active:bg-red-500 active:text-white">Remove</button>
+            </span>
+            <span class="flex list-none justify-between border-b-2 border-primary-light pb-3 hover:opacity-80">
+                <li class="font-md">John Doe</li>
+                <button class="bg-gray-300 text-black active:bg-red-500 active:text-white">Remove</button>
+            </span>
+            <span class="flex list-none justify-between border-b-2 border-primary-light pb-3 hover:opacity-80">
+                <li class="font-md">Jane Doe</li>
+                <button class="bg-gray-300 text-black active:bg-red-500 active:text-white">Remove</button>
+            </span>
+            <span class="flex list-none justify-between border-b-2 border-primary-light pb-3 hover:opacity-80">
+                <li class="font-md">Allan Hex</li>
+                <button class="bg-gray-300 text-black active:bg-red-500 active:text-white">Remove</button>
+            </span>
+            <span class="flex list-none justify-between border-b-2 border-primary-light pb-3 hover:opacity-80">
+                <li class="font-md">Delvin Mark</li>
+                <button class="bg-gray-300 text-black active:bg-red-500 active:text-white">Remove</button>
+            </span>
+            <span class="flex list-none justify-between border-b-2 border-primary-light pb-3 hover:opacity-80">
+                <li class="font-md">Missy Mane</li>
+                <button class="bg-gray-300 text-black active:bg-red-500 active:text-white">Remove</button>
+            </span>
+            <span class="flex list-none justify-between border-b-2 border-primary-light pb-3 hover:opacity-80">
+                <li class="font-md">Chris Mdosi</li>
+                <button class="bg-gray-300 text-black active:bg-red-500 active:text-white">Remove</button>
+            </span>
+            <span class="flex list-none justify-between border-b-2 border-primary-light pb-3 hover:opacity-80">
+                <li class="font-md">Chris Mdosi</li>
+                <button class="bg-gray-300 text-black active:bg-red-500 active:text-white">Remove</button>
+            </span>
+            <span class="flex list-none justify-between border-b-2 border-primary-light pb-3 hover:opacity-80">
+                <li class="font-md">Chris Mdosi</li>
+                <button class="bg-gray-300 text-black active:bg-red-500 active:text-white">Remove</button>
+            </span>
+        </div>
+        <div class="w-3/4 overflow-y-auto border-l-2 border-white">
+            <h2 class="text-lg font-bold underline underline-offset-4 text-center">John Doe's Questions</h2>
+            <div class="flex w-full gap-8 pb-2 border-b-2 border-primary-light">
+                <div class="flex flex-col w-fit gap-3">
+                    <span>Votes : 5</span>
+                    <span>Answersn : 5</span>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <span>What is Open AI?</span>
+                    <span class="flex list-none gap-3">
+                        <li>#Open AI</li>
+                        <li>#JavaScript</li>
+                        <li>#TypeScript</li>
+                        <li>#Angular</li>
+                    </span>
+                </div>
+                <button type="button" class="bg-gray-300 text-black w-24 active:bg-red-500 active:text-white">Delete</button>
             </div>
-            <div>
-                <span>What is Open AI?</span>
-                <span>
-                    <li>#Open AI</li>
-                    <li>#JavaScript</li>
-                    <li>#TypeScript</li>
-                    <li>#Angular</li>
-                </span>
+            <div class="flex w-full gap-8 pb-2 border-b-2 border-primary-light">
+                <div class="flex flex-col w-fit gap-3">
+                    <span>Votes : 5</span>
+                    <span>Answersn : 5</span>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <span>What is Open AI?</span>
+                    <span class="flex list-none gap-3">
+                        <li>#Open AI</li>
+                        <li>#JavaScript</li>
+                        <li>#TypeScript</li>
+                        <li>#Angular</li>
+                    </span>
+                </div>
+                <button type="button" class="bg-gray-300 text-black w-24 active:bg-red-500 active:text-white">Delete</button>
             </div>
-            <button type="button">Delete</button>
+            <div class="flex w-full gap-8 pb-2 border-b-2 border-primary-light">
+                <div class="flex flex-col w-fit gap-3">
+                    <span>Votes : 5</span>
+                    <span>Answersn : 5</span>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <span>What is Open AI?</span>
+                    <span class="flex list-none gap-3">
+                        <li>#Open AI</li>
+                        <li>#JavaScript</li>
+                        <li>#TypeScript</li>
+                        <li>#Angular</li>
+                    </span>
+                </div>
+                <button type="button" class="bg-gray-300 text-black w-24 active:bg-red-500 active:text-white">Delete</button>
+            </div>
+            <div class="flex w-full gap-8 pb-2 border-b-2 border-primary-light">
+                <div class="flex flex-col w-fit gap-3">
+                    <span>Votes : 5</span>
+                    <span>Answersn : 5</span>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <span>What is Open AI?</span>
+                    <span class="flex list-none gap-3">
+                        <li>#Open AI</li>
+                        <li>#JavaScript</li>
+                        <li>#TypeScript</li>
+                        <li>#Angular</li>
+                    </span>
+                </div>
+                <button type="button" class="bg-gray-300 text-black w-24 active:bg-red-500 active:text-white">Delete</button>
+            </div>
+            <div class="flex w-full gap-8 pb-2 border-b-2 border-primary-light">
+                <div class="flex flex-col w-fit gap-3">
+                    <span>Votes : 5</span>
+                    <span>Answersn : 5</span>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <span>What is Open AI?</span>
+                    <span class="flex list-none gap-3">
+                        <li>#Open AI</li>
+                        <li>#JavaScript</li>
+                        <li>#TypeScript</li>
+                        <li>#Angular</li>
+                    </span>
+                </div>
+                <button type="button" class="bg-gray-300 text-black w-24 active:bg-red-500 active:text-white">Delete</button>
+            </div>
+            <div class="flex w-full gap-8 pb-2 border-b-2 border-primary-light">
+                <div class="flex flex-col w-fit gap-3">
+                    <span>Votes : 5</span>
+                    <span>Answersn : 5</span>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <span>What is Open AI?</span>
+                    <span class="flex list-none gap-3">
+                        <li>#Open AI</li>
+                        <li>#JavaScript</li>
+                        <li>#TypeScript</li>
+                        <li>#Angular</li>
+                    </span>
+                </div>
+                <button type="button" class="bg-gray-300 text-black w-24 active:bg-red-500 active:text-white">Delete</button>
+            </div>
+            <div class="flex w-full gap-8 pb-2 border-b-2 border-primary-light">
+                <div class="flex flex-col w-fit gap-3">
+                    <span>Votes : 5</span>
+                    <span>Answersn : 5</span>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <span>What is Open AI?</span>
+                    <span class="flex list-none gap-3">
+                        <li>#Open AI</li>
+                        <li>#JavaScript</li>
+                        <li>#TypeScript</li>
+                        <li>#Angular</li>
+                    </span>
+                </div>
+                <button type="button" class="bg-gray-300 text-black w-24 active:bg-red-500 active:text-white">Delete</button>
+            </div>
+            <div class="flex w-full gap-8 pb-2 border-b-2 border-primary-light">
+                <div class="flex flex-col w-fit gap-3">
+                    <span>Votes : 5</span>
+                    <span>Answersn : 5</span>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <span>What is Open AI?</span>
+                    <span class="flex list-none gap-3">
+                        <li>#Open AI</li>
+                        <li>#JavaScript</li>
+                        <li>#TypeScript</li>
+                        <li>#Angular</li>
+                    </span>
+                </div>
+                <button type="button" class="bg-gray-300 text-black w-24 active:bg-red-500 active:text-white">Delete</button>
+            </div>
+            <div class="flex w-full gap-8 pb-2 border-b-2 border-primary-light">
+                <div class="flex flex-col w-fit gap-3">
+                    <span>Votes : 5</span>
+                    <span>Answersn : 5</span>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <span>What is Open AI?</span>
+                    <span class="flex list-none gap-3">
+                        <li>#Open AI</li>
+                        <li>#JavaScript</li>
+                        <li>#TypeScript</li>
+                        <li>#Angular</li>
+                    </span>
+                </div>
+                <button type="button" class="bg-gray-300 text-black w-24 active:bg-red-500 active:text-white">Delete</button>
+            </div>
+            <div class="flex w-full gap-8 pb-2 border-b-2 border-primary-light">
+                <div class="flex flex-col w-fit gap-3">
+                    <span>Votes : 5</span>
+                    <span>Answersn : 5</span>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <span>What is Open AI?</span>
+                    <span class="flex list-none gap-3">
+                        <li>#Open AI</li>
+                        <li>#JavaScript</li>
+                        <li>#TypeScript</li>
+                        <li>#Angular</li>
+                    </span>
+                </div>
+                <button type="button" class="bg-gray-300 text-black w-24 active:bg-red-500 active:text-white">Delete</button>
+            </div>
         </div>
     </div>
 </div>
+
+<app-footer></app-footer>

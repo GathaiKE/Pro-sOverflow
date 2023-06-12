@@ -1,14 +1,29 @@
-<div>
-    <div class="register">
-        <label for="profile picture"></label>
-        <input type="text " placeholder="Enter a valid image link">
-        <label for="name">Name</label>
-        <input type="text">
-        <label for="email">Email</label>
-        <input type="email">
-        <label for="email">Password</label>
-        <input type="password">
-        <button>Register</button>
-        <a href="#">Log In</a>
+<div class="bg-black flex flex-col justify-center items-center h-screen p-8">
+    <div class="bg-primary-light md:w-cont p-8 text-white md:h-fit w-full my-auto">
+        <h1 class="font-irish text-gold text-2xl md:text-4xl text-center">Register</h1>
+        <div class="flex w-full my-5 flex-col ">
+            <label for="profile picture">ProfilePicture: </label>
+            <input type="text " placeholder="Enter a valid image link">
+        </div>
+        <div class="flex w-full my-5 flex-col">
+            <label for="fname">FirstName: </label>
+            <input type="text" class=" active:ring-offset-green" placeholder="John">
+        </div>
+        <div class="flex w-full my-5 flex-col">
+            <label for="sname">LastName: </label>
+            <input type="text" placeholder="Doe" >
+        </div>
+        <div class="flex w-full my-5 flex-col">
+            <label for="email">Email:</label>
+            <input type="email" placeholder="johndoe22@gmail.com">
+        </div>
+        <div class="flex w-full my-5 flex-col">
+            <label for="email">Password:</label>
+            <input type="password" placeholder="*********">
+        </div>
+        <div class="flex justify-center w-full my-5">
+            <button class="bg-green font-irish p-2 text-white" [routerLink]="['/logIn']">Register</button>
+        </div>
+        <a [routerLink]="['/logIn']">Already have an account?</a>
     </div>
 </div>

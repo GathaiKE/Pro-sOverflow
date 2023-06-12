@@ -1,10 +1,9 @@
-<div>
-    <div>
-        <li>Menu</li>
-        <li>Home</li>
-        <li>Questions</li>
-        <li>Tags</li>
-        <li>Users</li>
-        <li>About</li>
+<div class="md:flex flex-col justify-start p-5 font-irish text-xl text-white w-fit bg-primary-dark h-screen hidden ">
+    <div class="flex flex-col list-none gap-1">
+        <li [routerLink]="['/home']" routerLinkActive="text-gold" class="border-b-2 border-primary-dark p-5 active:text-gold cursor-pointer hover:text-primary-light">Home</li>
+        <li [routerLink]="['/ask']" routerLinkActive="text-gold" class="border-b-2 border-primary-dark p-5 active:text-gold cursor-pointer hover:text-primary-light">Questions</li>
+        <li [routerLink]="['/details']" routerLinkActive="text-gold" class="border-b-2 border-primary-dark p-5 active:text-gold cursor-pointer hover:text-primary-light">details</li>
+        <li [routerLink]="['/stats']" routerLinkActive="text-gold" class="p-5 active:text-gold border-b-2 border-primary-dark cursor-pointer hover:text-primary-light">stats</li>
+        <li [routerLink]="['/admin']" routerLinkActive="text-gold" class="p-5 active:text-gold cursor-pointer hover:text-primary-light">Admin</li>
     </div>
 </div>
