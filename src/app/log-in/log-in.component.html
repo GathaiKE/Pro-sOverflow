@@ -1,17 +1,29 @@
 <div class="bg-black h-screen text-white flex items-center justify-center">
     <div class="bg-primary-light p-8 md:w-cont">
         <h1 class="font-irish text-center md:text-4xl text-gold">Log In</h1>
-        <div class="flex my-5 font-irish flex-col md:flex-row">
-            <label for="email" class="">Email</label>
-            <input type="text" class=" active:ring-gold" placeholder="johndoe22@gmail.com">
-        </div>
-        <div class="flex my-5 gap-5 flex-col md:flex-row md:gap-0">
-            <label for="email" >Password</label>
-            <input type="password" class=" active:ring-gold" placeholder="*********">
-        </div>
-        <div class="w-full flex justify-center">
-            <button class="bg-gold p-2 text-black active:bg-white" [routerLink]="['/home']">Log In</button>
-        </div>
+        <form (ngSubmit)="submit(form)" #form="ngForm" class="flex flex-col gap-6">
+                <div>
+                    <div *ngIf="!email.valid && email.touched" class="text-red-500">
+                        <p>Valid email required*</p>
+                    </div>
+                    <div class="flex my-5 font-irish flex-col md:flex-row form-group">
+                        <label for="email" class="w-1/4">Email</label>
+                        <input type="text" class="email w-3/4 font-serif active:ring-gold" placeholder="johndoe22@gmail.com" ngModel name="email" required email #email="ngModel">
+                    </div>
+                </div>
+                <div>
+                    <div *ngIf="!password.valid && password.touched">
+                        <p class="text-red-500">Entar a password*</p>
+                    </div>
+                    <div class="flex my-5 gap-5 flex-col md:flex-row md:gap-0 form-group">
+                        <label for="email" class="w-1/4" >Password</label>
+                        <input type="password" class="w-3/4 active:ring-gold" placeholder="*********" name="password" required ngModel #password="ngModel">
+                    </div>
+                </div>
+            <div class="w-full flex justify-center">
+                <button type="submit" class="bg-gold p-2 text-black active:bg-white" [routerLink]="['/home']">Log In</button>
+            </div>
+        </form>
         <div class="flex justify-between p-3 mt-5">
             <a [routerLink]="['/reset']">Forgot Password?</a>
             <a [routerLink]="['/register']">Are you new?</a>
