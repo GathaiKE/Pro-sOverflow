@@ -9,6 +9,6 @@
 
 input{@apply w-full p-2 rounded focus:border-none font-medium text-black ml-3}
 label{@apply font-bold text-lg md:text-2xl}
-button{@apply p-1 w-1/2 mx-8 mt-6  font-extrabold rounded-md}
+button{@apply p-1 w-28 mx-8 mt-6  font-extrabold rounded-md}
 a{@apply active:text-gold}
 }

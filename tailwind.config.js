@@ -5,6 +5,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens:{
+        srch:"55rem"
+      },
       fontSize: {
         sm: '0.8rem',
         base: '1rem',
@@ -32,7 +35,8 @@ module.exports = {
       spacing:{
         hero:"43.75em",
         btn:"18rem",
-        cont:"35rem"
+        cont:"35rem",
+        src:""
       },
     }
   },

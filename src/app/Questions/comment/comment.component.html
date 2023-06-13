@@ -1,7 +1,12 @@
-<div>
-    <h1>Comment</h1>
-    <div>
-        <textarea name="comment" id="comment" cols="30" rows="10" placeholder="Write your comment here"></textarea>
-        <button type="button">Comment</button>
+<div class="flex justify-center w-screen h-screen bg-gray-500 items-center page" (click)="onClose()">
+    <div class="w-cont flex flex-col h-fit bg-primary-dark text-white p-8 gap-3">
+        <div class="flex justify-between">
+            <h1 class="text-xl font-bold">Comment</h1>
+            <h2 class="font-bold cursor-pointer active:text-gray-300" (click)="onClose()">X</h2>
+        </div>
+        <div class="flex flex-col">
+            <textarea name="comment" id="comment" cols="30" rows="10" placeholder="Write your comment here" class="text-black text-sm h-20 focus:outline-none p-2"></textarea>
+            <button type="button" class="bg-gray-300 text-sm text-black w-32 self-end">Comment</button>
+        </div>
     </div>
 </div>

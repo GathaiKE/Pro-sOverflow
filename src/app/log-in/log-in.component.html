@@ -1,7 +1,7 @@
 <div class="bg-black h-screen text-white flex items-center justify-center">
-    <div class="bg-primary-light p-8 md:w-cont">
-        <h1 class="font-irish text-center md:text-4xl text-gold">Log In</h1>
-        <form (ngSubmit)="submit(form)" #form="ngForm" class="flex flex-col gap-6">
+    <div class="bg-primary-light p-6 m-auto md:w-cont">
+        <h1 class="font-irish text-center text-3xl md:text-4xl text-gold">Log In</h1>
+        <form (ngSubmit)="submit(form)" #form="ngForm" class="flex flex-col">
                 <div>
                     <div *ngIf="!email.valid && email.touched" class="text-red-500">
                         <p>Valid email required*</p>
@@ -24,7 +24,7 @@
                 <button type="submit" class="bg-gold p-2 text-black active:bg-white" [routerLink]="['/home']">Log In</button>
             </div>
         </form>
-        <div class="flex justify-between p-3 mt-5">
+        <div class="flex justify-between p-3 mt-5 text-sm md:text-base">
             <a [routerLink]="['/reset']">Forgot Password?</a>
             <a [routerLink]="['/register']">Are you new?</a>
     </div>
