@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,5 +9,10 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./comment.component.css']
 })
 export class CommentComponent {
+  @Output() close= new EventEmitter<void>()
 
+  onClose(){
+    this.close.emit
+  }
+  
 }

@@ -1,9 +1,9 @@
 <div class="bg-black flex flex-col justify-center items-center h-screen p-8">
-    <div class="bg-primary-light md:w-cont p-8 text-white md:h-fit w-full my-auto">
+    <div class="bg-primary-light md:w-cont p-5 text-white md:h-fit w-full my-auto">
         <h1 class="font-irish text-gold text-2xl md:text-4xl text-center">Register</h1>
         <form (ngSubmit)="submit(form)" #form="ngForm" class="h-fixed">
             <div class="flex w-full my-5 flex-col form-group">
-                <label for="profile picture">ProfilePicture: </label>
+                <label for="profile picture">Profile Picture: </label>
                 <input type="text " placeholder="Enter a valid image link" ngModel name="profile_pic">
             </div>
             <div class="flex gap-3">
@@ -12,7 +12,7 @@
                         <p>This field is required*</p>
                     </div>
                     <div class="flex w-full my-5 flex-col form-group" >
-                        <label for="fname">FirstName: </label>
+                        <label for="fname">First Name: </label>
                         <input type="text" class=" active:ring-offset-green" ngModel name="first_name" placeholder="John" #fname="ngModel" required>
                     </div>
                 </div>
@@ -21,7 +21,7 @@
                         <p>This field is required*</p>
                     </div>
                     <div class="flex w-full my-5 flex-col form-group">
-                        <label for="sname">LastName: </label>
+                        <label for="sname">Last Name: </label>
                         <input type="text" placeholder="Doe" ngModel name="last_name" #lname="ngModel" required>
                     </div>
                 </div>

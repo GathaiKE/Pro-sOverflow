@@ -16,6 +16,7 @@ import { QuestionDetailsComponent } from './Questions/question-details/question-
 import { QuestionStatsComponent } from './Questions/question-stats/question-stats.component';
 import { RegisterComponent } from './register/register.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { CommentComponent } from './Questions/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     QuestionDetailsComponent,
     QuestionStatsComponent,
     RegisterComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    CommentComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
