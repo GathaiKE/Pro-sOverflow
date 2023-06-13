@@ -1,12 +1,13 @@
-<div class="flex bg-hdr md:justify-between text-white text-center align-middle px-1 py-2">
-    <h1 class="font-irish text-lg py-3 text-gold md:text-3xl cursor-pointer active:text-primary-light">Pro's Overflow</h1>
+<div class="flex bg-hdr text-white text-center align-middle px-1 py-2 md:justify-evenly">
+    <h1 class="font-irish text-lg py-3 text-gold md:text-3xl cursor-pointer active:text-primary-light flex flex-nowrap">Pro's Overflow</h1>
     <div class="w-2/3 h-full  flex items-center my-auto gap-0">
         <input type="text" class="w-full hidden md:block rounded-r-none " placeholder="search">
         <button class="bg-primary-light w-fit m-0 py-2 px-5 md:rounded-none md:rounded-r-2xl active:text-primary-light active:bg-white">search</button>
     </div>
-        <div class="flex items-center">
-            <a href="#" class="mx-auto hodden py-1 px-2 font-bold bg-primary-light text-center rounded-full md:rounded-3xl sm:text-sm md:block flex flex-nowrap">Log Out</a>
-        </div>
+    
+    <div class="flex items-center">
+        <a href="#" class="mx-auto hodden py-1 px-2 font-bold bg-primary-light text-center rounded-full md:rounded-3xl sm:text-sm md:block flex flex-nowrap">Log Out</a>
+    </div>
     
     <div class="flex items-center flex-col md:flex-row">
         <div class="flex-col-reverse cursor-pointer" [routerLink]="['/profile']">
