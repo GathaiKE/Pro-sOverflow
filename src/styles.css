@@ -12,3 +12,48 @@ label{@apply font-bold text-lg md:text-2xl}
 button{@apply p-1 w-28 mx-8 mt-6  font-extrabold rounded-md}
 a{@apply active:text-gold}
 }
+
+.ham{
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    transition: all 0.25s;
+    position: relative;
+    transform: rotate(0);
+    transition: all 0.5s;
+}
+
+.ham-top,
+.ham-middle,
+.ham-bottom{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 2px;
+    background: #fff;
+}
+
+.ham-middle{
+    transform: translateY(7px);
+}
+.ham-bottom{
+    transform: translateY(14px);
+}
+
+.open{
+    transform: rotate(90deg);
+    transform: translateY(0px);
+}
+
+.open .ham-top{
+    transform: rotate(45deg) translateY(6px) translate(6px);
+}
+
+.open .ham-middle{
+    display: none;
+}
+
+.open .ham-bottom{
+    transform: rotate(-45deg) translateY(6px) translate(-6px);
+}
