@@ -1,10 +1,16 @@
 export interface User{
     user_id:string
-    profile_image?:string
+    profile_pic?:string
     first_name:string
-    last_name:string
+    second_name:string
     email:string
-    role:string
+    email_sent:number
+    deactivated:number
+    role_id:string
     password:string
-    website?:string
+}
+
+export interface LogRequest{
+    email:string
+    password:string
 }

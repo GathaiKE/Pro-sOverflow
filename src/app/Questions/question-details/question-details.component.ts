@@ -5,8 +5,14 @@ import { MenuComponent } from 'src/app/menu/menu.component';
 import { FooterComponent } from 'src/app/footer/footer.component';
 import { TagsComponent } from 'src/app/tags/tags.component';
 import { ActivatedRoute, Params } from '@angular/router';
-import { QuestionsService } from 'src/app/Services/questions.service';
-import { Question } from 'src/app/Interfaces/questionInterfaces';
+import { Answer, Question } from 'src/app/Interfaces/questionInterfaces';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import * as QuestionActions from '../../NgRx/Actions/questionActions'
+import { getSingleQuestion } from 'src/app/NgRx/Reducers/questionReducers';
+import { AppState } from 'src/app/NgRx/AppState';
+import * as AnswerActions from '../../NgRx/Actions/answerActions'
+import { getQuestAnswers } from 'src/app/NgRx/Reducers/answerReducers';
 
 @Component({
   selector: 'app-question-details',
@@ -16,12 +22,21 @@ import { Question } from 'src/app/Interfaces/questionInterfaces';
   styleUrls: ['./question-details.component.css']
 })
 export class QuestionDetailsComponent implements OnInit{
-  constructor(private route:ActivatedRoute, private QuestionsService:QuestionsService){}
-  question!:Question
+  constructor(private route:ActivatedRoute, private Store:Store<AppState>){}
+  question!:Observable<Question>
+  answer!:Observable<Answer>
 
   ngOnInit(): void {
     this.route.params.subscribe((q:Params)=>{
-      this.question=this.QuestionsService.getSingleQuestion(q['question_id'])
+      //Get Question By Id
+      this.Store.dispatch(QuestionActions.getQuestions())
+      this.Store.dispatch(QuestionActions.getSingleQuestion({question_id:q['question_id']}))
+      this.question=this.Store.select(getSingleQuestion)
+
+      //Get Answers by Question_id
+      this.Store.dispatch(AnswerActions.getAnswers())
+      this.Store.dispatch(AnswerActions.GetSingleQuestionAnswers({question_id:q['question_id']}))
+      this.answer=this.Store.select(getQuestAnswers)
     })
   }
 

@@ -5,8 +5,13 @@ import { FooterComponent } from '../footer/footer.component';
 import { MenuComponent } from '../menu/menu.component';
 import { RouterModule } from '@angular/router';
 import { TagsComponent } from '../tags/tags.component';
-import { QuestionsService } from '../Services/questions.service';
 import { Question } from '../Interfaces/questionInterfaces';
+import {Observable} from 'rxjs'
+import { Store } from '@ngrx/store';
+import { AppState } from '../NgRx/AppState';
+import {getQuestions} from '../NgRx/Reducers/questionReducers'
+import * as QuestionActions from '../NgRx/Actions/questionActions'
+import { BriefPipe } from '../Pipes/brief.pipe';
 
 @Component({
   selector: 'app-home',
@@ -17,18 +22,20 @@ import { Question } from '../Interfaces/questionInterfaces';
     FooterComponent,
     MenuComponent,
     RouterModule,
-    TagsComponent
+    TagsComponent,
+    BriefPipe
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit{
-  questions:Question[]=[]
+  questions!:Observable<Question[]>
 
-  constructor(private QuestionsService:QuestionsService){}
+  constructor(private Store:Store<AppState>){}
 
   ngOnInit(): void {
-    this.questions=this.QuestionsService.getQuestions()
+    this.questions=this.Store.select(getQuestions)
+    this.Store.dispatch(QuestionActions.getQuestions())
   }
 
 }

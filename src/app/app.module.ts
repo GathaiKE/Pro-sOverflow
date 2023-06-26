@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +17,14 @@ import { QuestionStatsComponent } from './Questions/question-stats/question-stat
 import { RegisterComponent } from './register/register.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { CommentComponent } from './Questions/comment/comment.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { QuestionEffectsService } from './NgRx/Effects/question-effects.service';
+import { QuestionsReducer } from './NgRx/Reducers/questionReducers';
+import { HttpClientModule } from '@angular/common/http';
+import { answerReducer } from './NgRx/Reducers/answerReducers';
+import { AnswerEffectsService } from './NgRx/Effects/answer-effects.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +46,11 @@ import { CommentComponent } from './Questions/comment/comment.component';
     QuestionStatsComponent,
     RegisterComponent,
     ResetPasswordComponent,
-    CommentComponent
+    CommentComponent,
+    HttpClientModule,
+    StoreModule.forRoot({question:QuestionsReducer,answer:answerReducer}),
+    EffectsModule.forRoot([QuestionEffectsService,AnswerEffectsService]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [],
   bootstrap: [AppComponent]
