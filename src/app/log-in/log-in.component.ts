@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { FormsModule, NgForm } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { FormGroup, FormsModule, NgForm } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import * as UserActions from '../NgRx/Actions/userActions'
 
 @Component({
   selector: 'app-log-in',
@@ -11,9 +13,15 @@ import { FormsModule, NgForm } from '@angular/forms';
   styleUrls: ['./log-in.component.css']
 })
 export class LogInComponent {
-
+form:any={
+  email:"",
+  password:""
+}
+constructor(private Store:Store){}
 
   submit(form:NgForm){
-    console.log(form)
+      console.log(form.value);
+      this.Store.dispatch(UserActions.logIn(form.value))
   }
+  
 }

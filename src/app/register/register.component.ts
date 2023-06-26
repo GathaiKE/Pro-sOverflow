@@ -15,5 +15,6 @@ export class RegisterComponent {
 
   submit(form:NgForm){
     console.log(form);
+    
   }
 }

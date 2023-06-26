@@ -8,8 +8,8 @@ export const registerSuccess=createAction('[Users]-RegisterSuccess',props<{messa
 export const registerFailure=createAction('[Users]-RegisterFailure',props<{error:string}>())
 
 //Log In
-export const logIn=createAction('[Users]-LogIn',props<{user:LogRequest}>())
-export const logInSuccess=createAction('[Users]-LogInSuccess',props<{token:string,role:number,username:string}>())
+export const logIn=createAction('[Users]-LogIn',props<{email:string, password:string}>())
+export const logInSuccess=createAction('[Users]-LogInSuccess',props<{message:string}>())
 export const logInFailure=createAction('[Users]-LogInFailure',props<{error:string}>())
 
 //Geu User By Id

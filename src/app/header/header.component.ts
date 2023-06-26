@@ -16,5 +16,9 @@ export class HeaderComponent {
     this.showMenu=!this.showMenu
   }
 
+  logout(){
+    localStorage.clear()
+  }
+
 }
 

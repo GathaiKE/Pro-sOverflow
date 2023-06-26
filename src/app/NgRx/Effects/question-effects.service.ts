@@ -11,7 +11,7 @@ export class QuestionEffectsService {
 
   constructor(private action$:Actions, private QuestionService:QuestionsService) { }
 
-  getQuestions=createEffect(()=>{
+  getQuestions$=createEffect(()=>{
     return this.action$.pipe(
       ofType(QuestionActions.getQuestions),
       mergeMap(()=> this.QuestionService.getQuestions().pipe(

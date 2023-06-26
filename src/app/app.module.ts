@@ -26,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { answerReducer } from './NgRx/Reducers/answerReducers';
 import { AnswerEffectsService } from './NgRx/Effects/answer-effects.service';
 import { UserReducer } from './NgRx/Reducers/userReducer';
+import { UserEffectaService } from './NgRx/Effects/user-effecta.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,7 @@ import { UserReducer } from './NgRx/Reducers/userReducer';
     CommentComponent,
     HttpClientModule,
     StoreModule.forRoot({question:QuestionsReducer,answer:answerReducer, user:UserReducer}),
-    EffectsModule.forRoot([QuestionEffectsService,AnswerEffectsService]),
+    EffectsModule.forRoot([QuestionEffectsService,AnswerEffectsService,UserEffectaService]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [],

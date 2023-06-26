@@ -5,9 +5,7 @@ import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/
 export interface UserRedInterface{
     users:User[]
     error:string
-    token:string
-    username:string
-    role_id:number
+    logInSuccess:string
     logInFailure:string
     updateUserSuccess:string
     updateUserFailure:string
@@ -16,14 +14,14 @@ export interface UserRedInterface{
     getInactiveUsersSuccess:User[]
     getInactiveUsersFailure:string
     user_id:string
+    registerSuccess:string
+    registerFailure:string
 }
 
 const initialState:UserRedInterface={
     users:[],
     error:"",
-    token:"",
-    username:"",
-    role_id: 0,
+    logInSuccess:"",
     logInFailure:"",
     updateUserSuccess:"",
     updateUserFailure:"",
@@ -31,7 +29,9 @@ const initialState:UserRedInterface={
     deactivateFailure:"",
     getInactiveUsersSuccess:[],
     getInactiveUsersFailure:"",
-    user_id:""
+    user_id:"",
+    registerSuccess:"",
+    registerFailure:""
 }
 
 export const UserReducer=createReducer(
@@ -58,18 +58,15 @@ on(UserActions.logInSuccess, (state,action):UserRedInterface=>{
     return {
         ...state,
         logInFailure:"",
-        token:action.token,
-        role_id:action.role,
-        username:action.username
+        logInSuccess:action.message
     }
 }),
 on(UserActions.logInFailure, (state,action):UserRedInterface=>{
     return {
         ...state,
         logInFailure:action.error,
-        token:"",
-        role_id:0,
-        username:""
+        logInSuccess:""
+
     }
 }),
 
@@ -118,6 +115,22 @@ on(UserActions.getInactiveUsersFailure, (state,action):UserRedInterface=>{
         ...state,
         getInactiveUsersSuccess:[],
         getInactiveUsersFailure:action.error
+    }
+}),
+
+on(UserActions.registerSuccess, (state,action):UserRedInterface=>{
+    return {
+        ...state,
+        registerFailure:"",
+        registerSuccess:action.message
+    }
+}),
+
+on(UserActions.registerFailure, (state,action):UserRedInterface=>{
+    return {
+        ...state,
+        registerFailure:action.error,
+        registerSuccess:""
     }
 })
 )
