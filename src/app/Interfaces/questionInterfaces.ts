@@ -8,6 +8,18 @@ export interface Question{
     tags:Tag[]
 }
 
+export interface NewQuestion{
+    title:string
+    body:string
+    tags:Tag[]
+}
+
+export interface UpdatedQuestion{
+    title:string
+    body:string
+    tags:Tag[]
+}
+
 export interface Answer {
     answer_id:string
     answer:string

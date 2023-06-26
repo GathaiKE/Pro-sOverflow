@@ -25,6 +25,7 @@ import { QuestionsReducer } from './NgRx/Reducers/questionReducers';
 import { HttpClientModule } from '@angular/common/http';
 import { answerReducer } from './NgRx/Reducers/answerReducers';
 import { AnswerEffectsService } from './NgRx/Effects/answer-effects.service';
+import { UserReducer } from './NgRx/Reducers/userReducer';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { AnswerEffectsService } from './NgRx/Effects/answer-effects.service';
     ResetPasswordComponent,
     CommentComponent,
     HttpClientModule,
-    StoreModule.forRoot({question:QuestionsReducer,answer:answerReducer}),
+    StoreModule.forRoot({question:QuestionsReducer,answer:answerReducer, user:UserReducer}),
     EffectsModule.forRoot([QuestionEffectsService,AnswerEffectsService]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],

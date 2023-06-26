@@ -3,23 +3,23 @@ import { LogRequest, User } from "src/app/Interfaces/userInterface";
 
 
 //Register User
-export const register=createAction('[Users]-Register')
-export const registerSuccess=createAction('[Users]-RegisterSuccess',props<{user:User}>())
+export const register=createAction('[Users]-Register',props<{user:User}>())
+export const registerSuccess=createAction('[Users]-RegisterSuccess',props<{message:string}>())
 export const registerFailure=createAction('[Users]-RegisterFailure',props<{error:string}>())
 
 //Log In
-export const logIn=createAction('[Users]-LogIn')
-export const logInSuccess=createAction('[Users]-LogInSuccess',props<{user:LogRequest}>())
+export const logIn=createAction('[Users]-LogIn',props<{user:LogRequest}>())
+export const logInSuccess=createAction('[Users]-LogInSuccess',props<{token:string,role:number,username:string}>())
 export const logInFailure=createAction('[Users]-LogInFailure',props<{error:string}>())
 
 //Geu User By Id
-export const getUser=createAction('[Users]-GetUser')
-export const getUserSuccess=createAction('[Users]-GetUserSuccess',props<{user_id:string}>())
+export const getUser=createAction('[Users]-GetUser',props<{user_id:string}>())
+export const getUserSuccess=createAction('[Users]-GetUserSuccess',props<{user:User}>())
 export const getUserFailure=createAction('[Users]-GetUserFailure',props<{error:string}>())
 
 //update user Details
-export const updateUser=createAction('[Users]-UpdateQuestion')
-export const updateUserSuccess=createAction('[Users]-UpdateQuestionSuccess',props<{user:User}>())
+export const updateUser=createAction('[Users]-UpdateQuestion',props<{user:User}>())
+export const updateUserSuccess=createAction('[Users]-UpdateQuestionSuccess',props<{message:string}>())
 export const updateUserFailure=createAction('[Users]-UpdateQuestionFailure',props<{error:string}>())
 
 //Get All Users
@@ -28,8 +28,8 @@ export const getUsersSuccess=createAction('[Users]-GetUsersSuccess',props<{user:
 export const getUsersFailure=createAction('[Users]-GetUsersFailure',props<{error:string}>())
 
 //Dectivate
-export const deactivate=createAction('[Users]-Deactivate')
-export const deactivateSuccess=createAction('[Users]-DeactivateSuccess',props<{user_id:string}>())
+export const deactivate=createAction('[Users]-Deactivate',props<{user_id:string}>())
+export const deactivateSuccess=createAction('[Users]-DeactivateSuccess',props<{message:string}>())
 export const deactivateFailure=createAction('[Users]-DeactivateFailure',props<{error:string}>())
 
 //Get all Deactivaed Users
