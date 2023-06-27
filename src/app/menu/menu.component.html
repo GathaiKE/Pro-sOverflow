@@ -4,6 +4,6 @@
         <li [routerLink]="['/home']" routerLinkActive="text-gold" class="border-b-2 border-primary-dark p-5 active:text-gold cursor-pointer hover:text-gray-300">Home</li>
         <li [routerLink]="['/ask']" routerLinkActive="text-gold" class="border-b-2 border-primary-dark p-5 active:text-gold cursor-pointer hover:text-gray-300">Inquire.</li>
         <li [routerLink]="['/tags']" routerLinkActive="text-gold" class="p-5 active:text-gold border-b-2 border-primary-dark cursor-pointer hover:text-gray-300 lg:hidden">Tags</li>
-        <li [routerLink]="['/admin']" routerLinkActive="text-gold" class="p-5 active:text-gold cursor-pointer hover:text-gray-300">Admin</li>
+        <li [routerLink]="['/admin']" routerLinkActive="text-gold" class="p-5 active:text-gold cursor-pointer hover:text-gray-300" *ngIf="isAdmin()">Admin</li>
     </div>
 </div>

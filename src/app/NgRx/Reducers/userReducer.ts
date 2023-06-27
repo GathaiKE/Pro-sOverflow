@@ -16,6 +16,9 @@ export interface UserRedInterface{
     user_id:string
     registerSuccess:string
     registerFailure:string
+    authenticated:boolean,
+    token:string
+    role:string
 }
 
 const initialState:UserRedInterface={
@@ -31,7 +34,10 @@ const initialState:UserRedInterface={
     getInactiveUsersFailure:"",
     user_id:"",
     registerSuccess:"",
-    registerFailure:""
+    registerFailure:"",
+    authenticated:false,
+    token:"",
+    role:""
 }
 
 export const UserReducer=createReducer(
@@ -58,15 +64,19 @@ on(UserActions.logInSuccess, (state,action):UserRedInterface=>{
     return {
         ...state,
         logInFailure:"",
-        logInSuccess:action.message
+        logInSuccess:action.message,
+        authenticated:true,
+        token:action.token,
+        role:action.role
     }
 }),
 on(UserActions.logInFailure, (state,action):UserRedInterface=>{
     return {
         ...state,
         logInFailure:action.error,
-        logInSuccess:""
-
+        logInSuccess:"",
+        token:"",
+        role:""
     }
 }),
 
@@ -142,3 +152,5 @@ export const getUserId=createSelector(getUsersState, (state)=> state.user_id)
 export const getSingleUser=createSelector(getUsers,getUserId, (users,user_id)=>{
     return users.find(user=>user.user_id===user_id) as User
 })
+export const getAuthStatus=createSelector(getUsersState, state=>state.authenticated)
+export const getRole=createSelector(getUsersState, state=>state.role)

@@ -41,3 +41,7 @@ export interface Tag{
     tag_id:string
     tag:string
 }
+
+export interface PostQuestionSuccess{
+    message:string
+}

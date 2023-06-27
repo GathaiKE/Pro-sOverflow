@@ -6,7 +6,7 @@ export interface User{
     email:string
     email_sent?:number
     deactivated?:number
-    role_id?:string
+    role?:string
     password:string
 }
 
@@ -19,9 +19,17 @@ export interface RegisterSuccess{
     message:string
 }
 
+export interface NewUser{
+    profile_pic:string
+    first_name:string
+    second_name:string
+    email:string
+    password:string
+}
+
 export interface LogInSuccess{
     message:string
     token:string
-    role_id:number
+    role:string
     username:string
 }

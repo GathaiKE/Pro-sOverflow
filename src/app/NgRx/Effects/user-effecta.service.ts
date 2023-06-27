@@ -16,10 +16,13 @@ export class UserEffectaService {
   register$=createEffect(()=>{
     return this.action$.pipe(
       ofType(UserActions.register),
-      mergeMap(action=> this.UserService.register(action.user).pipe(
-        map(message=>UserActions.registerSuccess({message:message.message}))
+      mergeMap(action=> this.UserService.register({profile_pic:action.profile_pic,first_name:action.first_name,second_name:action.last_name,email:action.email,password:action.password}).pipe(
+        map(message=>{
+          this.router.navigate(['/logIn'])
+          return UserActions.registerSuccess({message:message.message})
+        })
       )),
-      catchError(err=> of(UserActions.registerFailure({error:err})))
+      catchError(err=> of(UserActions.registerFailure({error:err.error})))
     )
   })
 
@@ -31,11 +34,10 @@ export class UserEffectaService {
         
         return this.UserService.logIn({email:action.email,password:action.password}).pipe(
           map(res=> {    
-            localStorage.setItem('token',res.token),
-            localStorage.setItem('role',res.role_id.toString()),
+            localStorage.setItem('token',res.token)
+            localStorage.setItem('role',res.role)
             localStorage.setItem('username',res.username)
-            this.router.navigate(['/home'])
-            return UserActions.logInSuccess({message:res.message})
+            return UserActions.logInSuccess({message:res.message,token:res.token,role:res.role})
           }),
           catchError(err=>of(UserActions.logInFailure({error:err})))
         )

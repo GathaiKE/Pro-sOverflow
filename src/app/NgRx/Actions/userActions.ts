@@ -3,13 +3,13 @@ import { LogRequest, User } from "src/app/Interfaces/userInterface";
 
 
 //Register User
-export const register=createAction('[Users]-Register',props<{user:User}>())
+export const register=createAction('[Users]-Register',props<{profile_pic:string,first_name:string,last_name:string,email:string,password:string}>())
 export const registerSuccess=createAction('[Users]-RegisterSuccess',props<{message:string}>())
 export const registerFailure=createAction('[Users]-RegisterFailure',props<{error:string}>())
 
 //Log In
 export const logIn=createAction('[Users]-LogIn',props<{email:string, password:string}>())
-export const logInSuccess=createAction('[Users]-LogInSuccess',props<{message:string}>())
+export const logInSuccess=createAction('[Users]-LogInSuccess',props<{message:string,token:string,role:string}>())
 export const logInFailure=createAction('[Users]-LogInFailure',props<{error:string}>())
 
 //Geu User By Id

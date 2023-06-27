@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LogInSuccess, LogRequest, RegisterSuccess, User } from '../Interfaces/userInterface';
+import { LogInSuccess, LogRequest, NewUser, RegisterSuccess, User } from '../Interfaces/userInterface';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -11,8 +11,8 @@ export class UsersService {
   constructor(private http:HttpClient) { }
   
   //Register
-  register(user:User):Observable<RegisterSuccess>{
-    return this.http.post<RegisterSuccess>('http://localhost:4000/users/register',user)
+  register(newuser:NewUser):Observable<RegisterSuccess>{
+    return this.http.post<RegisterSuccess>('http://localhost:4000/users/register',newuser)
   }
 
   //logIn
