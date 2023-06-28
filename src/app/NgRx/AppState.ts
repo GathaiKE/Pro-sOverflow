@@ -1,7 +1,9 @@
 import { AnswerRedInterface } from './Reducers/answerReducers'
 import {questionReducerInterface} from './Reducers/questionReducers'
+import { UserRedInterface } from './Reducers/userReducer'
 
 export interface AppState{
-    questions:questionReducerInterface
+    question:questionReducerInterface
     answers:AnswerRedInterface
+    users:UserRedInterface
 }

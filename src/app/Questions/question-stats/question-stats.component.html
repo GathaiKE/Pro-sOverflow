@@ -2,124 +2,35 @@
 <div class="flex">
     <app-menu></app-menu>
     <div class="bg-black text-white md:border-l-2 border-white w-full h-screen overflow-y-auto">
-        <div class="h-fit md:h-1/3 flex border-b-2 border-primary-light p-4 gap-1">
-            <div class="flex flex-col gap-3 w-2/3">
-                <p class="text-md font-bold">What is AI</p>
-                <P class="p-2">I have created an online resume using VS Code with my photo on it. When I "show preview" my resume on VS code there is a photo. My problem is when I host my resume website on GitHub and try to visit the site, there is no photo on my resume. Is there something am doing wrong or am I missing something. Regards.</P>
+        <div class="h-fit md:h-1/3 flex border-b-2 border-primary-light p-4 gap-1" *ngIf="question$ |async as q">
+            <div class="flex flex-col gap-3 w-2/3" >
+                <p class="text-md font-bold">{{q.title}}</p>
+                <P class="p-2">{{q.body}}</P>
             </div>
             <div class="w-1/3 flex flex-col text-lg md:text-2xl gap-8 p-5">
-                <p class="flex self-start">Upvotes : 5</p>
-                <p class="flex self-stand">Downvotes : 1</p>
+                <p class="flex self-start">Upvotes : {{q.upvotes}}</p>
+                <p class="flex self-stand">Downvotes : {{q.downvotes}}</p>
             </div>
         </div>
         <div class="p-3 overflow-y-scroll md:h-2/3 w-full">
             <h2 class="text-lg font-bold p-4">Answers</h2>
-            <div class="flex flex-col-reverse md:flex-row border-b-2 border-primary-light pb-3 w-full">
-                <div class="flex flex-row-reverse md:flex-col p-5 mt-3 md:items-center md:space-y-3">
-                    <span class="flex justify-evenly w-1/2 items-center md:justify-evenly md:w-full">
-                        <img src="../../../assets/heart1.png" alt="like" class="bg-white h-10 p-2 rounded cursor-pointer active:bg-gray-300">
-                        <img src="../../../assets/unheart.png" alt="unlike" class="bg-white h-10 p-2 rounded cursor-pointer active:bg-gray-300">
-                    </span>
-                    <span class="w-1/2 flex justify-evenly items-center md:space-x-3 md:w-full">
-                        <a class="bg-green px-2 active:text-green active:bg-gray-300 cursor-pointer w-fit rounded h-7">Accept</a>
-                        <a class="bg-gray-300 text-black px-2 active:bg-white cursor-pointer active:text-black w-fit rounded h-7 "[routerLink]="['/comment']" >Comment</a>
-                    </span>
-                </div>
-                <div class="p-2 flex items-center">
-                    <p class="w-full">1. OpenAPI is an open standard for describing APIs that allows you to provide an API specification encoded in a JSON or YAML document. It provides a comprehensive dictionary of terms that reflects commonly-understood concepts in the world of APIs, embedding the fundamentals of HTTP and JSON</p>
-                </div>
-            </div>
-            <div class="flex flex-col-reverse md:flex-row border-b-2 border-primary-light pb-3">
-                <div class="flex flex-row-reverse md:flex-col p-5 mt-3 md:items-center md:space-y-3">
-                    <span class="flex justify-evenly w-1/2 items-center md:justify-evenly md:w-full">
-                        <img src="../../../assets/heart1.png" alt="like" class="bg-white h-10 p-2 rounded cursor-pointer active:bg-gray-300">
-                        <img src="../../../assets/unheart.png" alt="unlike" class="bg-white h-10 p-2 rounded cursor-pointer active:bg-gray-300">
-                    </span>
-                    <span class="w-1/2 flex justify-evenly items-center md:space-x-3 md:w-full">
-                        <a class="bg-green px-2 active:text-green active:bg-gray-300 cursor-pointer w-fit rounded h-7">Accept</a>
-                        <a class="bg-gray-300 text-black px-2 active:bg-white cursor-pointer active:text-black w-fit rounded h-7 "[routerLink]="['/comment']" >Comment</a>
-                    </span>
-                </div>
-                <div class="p-2 flex items-center">
-                    <p>1. OpenAPI is an open standard for describing APIs that allows you to provide an API specification encoded in a JSON or YAML document. It provides a comprehensive dictionary of terms that reflects commonly-understood concepts in the world of APIs, embedding the fundamentals of HTTP and JSON</p>
+            <div *ngIf="answers$ |async as answers">
+                <div class="flex flex-col-reverse md:flex-row border-b-2 border-primary-light pb-3 w-full" *ngF>
+                    <div class="flex flex-row-reverse md:flex-col p-5 mt-3 md:items-center md:space-y-3">
+                        <span class="flex justify-evenly w-1/2 items-center md:justify-evenly md:w-full">
+                            <img src="../../../assets/heart1.png" alt="like" class="bg-white h-10 p-2 rounded cursor-pointer active:bg-gray-300">
+                            <img src="../../../assets/unheart.png" alt="unlike" class="bg-white h-10 p-2 rounded cursor-pointer active:bg-gray-300">
+                        </span>
+                        <span class="w-1/2 flex justify-evenly items-center md:space-x-3 md:w-full">
+                            <a class="bg-green px-2 active:text-green active:bg-gray-300 cursor-pointer w-fit rounded h-7">Accept</a>
+                            <a class="bg-gray-300 text-black px-2 active:bg-white cursor-pointer active:text-black w-fit rounded h-7 "[routerLink]="['/comment']" >Comment</a>
+                        </span>
+                    </div>
+                    <div class="p-2 flex items-center">
+                        <p class="w-full">1. OpenAPI is an open standard for describing APIs that allows you to provide an API specification encoded in a JSON or YAML document. It provides a comprehensive dictionary of terms that reflects commonly-understood concepts in the world of APIs, embedding the fundamentals of HTTP and JSON</p>
+                    </div>
                 </div>
             </div>
-            <div class="flex flex-col-reverse md:flex-row border-b-2 border-primary-light pb-3">
-                <div class="flex flex-row-reverse md:flex-col p-5 mt-3 md:items-center md:space-y-3">
-                    <span class="flex justify-evenly w-1/2 items-center md:justify-evenly md:w-full">
-                        <img src="../../../assets/heart1.png" alt="like" class="bg-white h-10 p-2 rounded cursor-pointer active:bg-gray-300">
-                        <img src="../../../assets/unheart.png" alt="unlike" class="bg-white h-10 p-2 rounded cursor-pointer active:bg-gray-300">
-                    </span>
-                    <span class="w-1/2 flex justify-evenly items-center md:space-x-3 md:w-full">
-                        <a class="bg-green px-2 active:text-green active:bg-gray-300 cursor-pointer w-fit rounded h-7">Accept</a>
-                        <a class="bg-gray-300 text-black px-2 active:bg-white cursor-pointer active:text-black w-fit rounded h-7 "[routerLink]="['/comment']" >Comment</a>
-                    </span>
-                </div>
-                <div class="p-2 flex items-center">
-                    <p>1. OpenAPI is an open standard for describing APIs that allows you to provide an API specification encoded in a JSON or YAML document. It provides a comprehensive dictionary of terms that reflects commonly-understood concepts in the world of APIs, embedding the fundamentals of HTTP and JSON</p>
-                </div>
-            </div>
-            <div class="flex flex-col-reverse md:flex-row border-b-2 border-primary-light pb-3">
-                <div class="flex flex-row-reverse md:flex-col p-5 mt-3 md:items-center md:space-y-3">
-                    <span class="flex justify-evenly w-1/2 items-center md:justify-evenly md:w-full">
-                        <img src="../../../assets/heart1.png" alt="like" class="bg-white h-10 p-2 rounded cursor-pointer active:bg-gray-300">
-                        <img src="../../../assets/unheart.png" alt="unlike" class="bg-white h-10 p-2 rounded cursor-pointer active:bg-gray-300">
-                    </span>
-                    <span class="w-1/2 flex justify-evenly items-center md:space-x-3 md:w-full">
-                        <a class="bg-green px-2 active:text-green active:bg-gray-300 cursor-pointer w-fit rounded h-7">Accept</a>
-                        <a class="bg-gray-300 text-black px-2 active:bg-white cursor-pointer active:text-black w-fit rounded h-7 "[routerLink]="['/comment']" >Comment</a>
-                    </span>
-                </div>
-                <div class="p-2 flex items-center">
-                    <p>1. OpenAPI is an open standard for describing APIs that allows you to provide an API specification encoded in a JSON or YAML document. It provides a comprehensive dictionary of terms that reflects commonly-understood concepts in the world of APIs, embedding the fundamentals of HTTP and JSON</p>
-                </div>
-            </div>
-            <div class="flex flex-col-reverse md:flex-row border-b-2 border-primary-light pb-3">
-                <div class="flex flex-row-reverse md:flex-col p-5 mt-3 md:items-center md:space-y-3">
-                    <span class="flex justify-evenly w-1/2 items-center md:justify-evenly md:w-full">
-                        <img src="../../../assets/heart1.png" alt="like" class="bg-white h-10 p-2 rounded cursor-pointer active:bg-gray-300">
-                        <img src="../../../assets/unheart.png" alt="unlike" class="bg-white h-10 p-2 rounded cursor-pointer active:bg-gray-300">
-                    </span>
-                    <span class="w-1/2 flex justify-evenly items-center md:space-x-3 md:w-full">
-                        <a class="bg-green px-2 active:text-green active:bg-gray-300 cursor-pointer w-fit rounded h-7">Accept</a>
-                        <a class="bg-gray-300 text-black px-2 active:bg-white cursor-pointer active:text-black w-fit rounded h-7 "[routerLink]="['/comment']" >Comment</a>
-                    </span>
-                </div>
-                <div class="p-2 flex items-center">
-                    <p>1. OpenAPI is an open standard for describing APIs that allows you to provide an API specification encoded in a JSON or YAML document. It provides a comprehensive dictionary of terms that reflects commonly-understood concepts in the world of APIs, embedding the fundamentals of HTTP and JSON</p>
-                </div>
-            </div>
-            <div class="flex flex-col-reverse md:flex-row border-b-2 border-primary-light pb-3">
-                <div class="flex flex-row-reverse md:flex-col p-5 mt-3 md:items-center md:space-y-3">
-                    <span class="flex justify-evenly w-1/2 items-center md:justify-evenly md:w-full">
-                        <img src="../../../assets/heart1.png" alt="like" class="bg-white h-10 p-2 rounded cursor-pointer active:bg-gray-300">
-                        <img src="../../../assets/unheart.png" alt="unlike" class="bg-white h-10 p-2 rounded cursor-pointer active:bg-gray-300">
-                    </span>
-                    <span class="w-1/2 flex justify-evenly items-center md:space-x-3 md:w-full">
-                        <a class="bg-green px-2 active:text-green active:bg-gray-300 cursor-pointer w-fit rounded h-7">Accept</a>
-                        <a class="bg-gray-300 text-black px-2 active:bg-white cursor-pointer active:text-black w-fit rounded h-7 "[routerLink]="['/comment']" >Comment</a>
-                    </span>
-                </div>
-                <div class="p-2 flex items-center">
-                    <p>1. OpenAPI is an open standard for describing APIs that allows you to provide an API specification encoded in a JSON or YAML document. It provides a comprehensive dictionary of terms that reflects commonly-understood concepts in the world of APIs, embedding the fundamentals of HTTP and JSON</p>
-                </div>
-            </div>
-            <div class="flex flex-col-reverse md:flex-row border-b-2 border-primary-light pb-3">
-                <div class="flex flex-row-reverse md:flex-col p-5 mt-3 md:items-center md:space-y-3">
-                    <span class="flex justify-evenly w-1/2 items-center md:justify-evenly md:w-full">
-                        <img src="../../../assets/heart1.png" alt="like" class="bg-white h-10 p-2 rounded cursor-pointer active:bg-gray-300">
-                        <img src="../../../assets/unheart.png" alt="unlike" class="bg-white h-10 p-2 rounded cursor-pointer active:bg-gray-300">
-                    </span>
-                    <span class="w-1/2 flex justify-evenly items-center md:space-x-3 md:w-full">
-                        <a class="bg-green px-2 active:text-green active:bg-gray-300 cursor-pointer w-fit rounded h-7">Accept</a>
-                        <a class="bg-gray-300 text-black px-2 active:bg-white cursor-pointer active:text-black w-fit rounded h-7 "[routerLink]="['/comment']" >Comment</a>
-                    </span>
-                </div>
-                <div class="p-2 flex items-center">
-                    <p>1. OpenAPI is an open standard for describing APIs that allows you to provide an API specification encoded in a JSON or YAML document. It provides a comprehensive dictionary of terms that reflects commonly-understood concepts in the world of APIs, embedding the fundamentals of HTTP and JSON</p>
-                </div>
-            </div>
-            
         </div>
     </div>
 </div>

@@ -13,18 +13,22 @@ import { getSingleQuestion } from 'src/app/NgRx/Reducers/questionReducers';
 import { AppState } from 'src/app/NgRx/AppState';
 import * as AnswerActions from '../../NgRx/Actions/answerActions'
 import { getQuestAnswers } from 'src/app/NgRx/Reducers/answerReducers';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-question-details',
   standalone: true,
-  imports: [CommonModule,HeaderComponent,MenuComponent,FooterComponent,TagsComponent],
+  imports: [CommonModule,HeaderComponent,MenuComponent,FooterComponent,TagsComponent,  FormsModule],
   templateUrl: './question-details.component.html',
   styleUrls: ['./question-details.component.css']
 })
 export class QuestionDetailsComponent implements OnInit{
   constructor(private route:ActivatedRoute, private Store:Store<AppState>){}
   question!:Observable<Question>
-  answer!:Observable<Answer>
+  answers!:Observable<Answer[]>
+  form:any={
+    ans:""
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((q:Params)=>{
@@ -36,8 +40,17 @@ export class QuestionDetailsComponent implements OnInit{
       //Get Answers by Question_id
       this.Store.dispatch(AnswerActions.getAnswers())
       this.Store.dispatch(AnswerActions.GetSingleQuestionAnswers({question_id:q['question_id']}))
-      this.answer=this.Store.select(getQuestAnswers)
+      this.answers=this.Store.select(getQuestAnswers)
     })
+  }
+
+  submit(form:NgForm){
+
+    this.route.params.subscribe((q:Params)=>{
+      const answer:string = form.value
+      this.Store.dispatch(AnswerActions.postAnswer({answer,question_id:q['question_id']}))
+    })
+    
   }
 
 }

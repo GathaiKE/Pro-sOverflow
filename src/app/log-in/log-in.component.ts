@@ -4,8 +4,9 @@ import { Router, RouterModule } from '@angular/router';
 import { FormGroup, FormsModule, NgForm } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import * as UserActions from '../NgRx/Actions/userActions'
-import { getAuthStatus, getRole } from '../NgRx/Reducers/userReducer';
-import {take} from 'rxjs'
+import { getAuthStatus, getLogError, getRole } from '../NgRx/Reducers/userReducer';
+import {Observable, map, take} from 'rxjs'
+import { LogInError } from '../Interfaces/userInterface';
 
 @Component({
   selector: 'app-log-in',
@@ -19,20 +20,19 @@ form:any={
   email:"",
   password:""
 }
+error!:Observable<string>
 constructor(private Store:Store, private Router:Router){}
 
   submit(form:NgForm){
-      console.log(form.value);
       this.Store.dispatch(UserActions.logIn(form.value))
+      this.error = this.Store.select(getLogError)
+      
   }
-
-  // isLoggedIn(){
-  //   this.Store.select(getAuthStatus)?this.Router.navigate(['/home']):this.Router.navigate(['/logIn'])
-  // }
-
+  
   isLoggedIn(): void {
     this.Store.select(getAuthStatus).pipe(take(1)).subscribe(authStatus => {
-        authStatus?this.Router.navigate(['/home']): this.Router.navigate(['/login']);
+      console.log(authStatus);
+        authStatus?true: false
       })
   }
 

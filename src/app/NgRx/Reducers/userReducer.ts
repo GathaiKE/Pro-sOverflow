@@ -1,6 +1,7 @@
 import { User } from 'src/app/Interfaces/userInterface'
 import * as UserActions from '../Actions/userActions'
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store'
+import { state } from '@angular/animations'
 
 export interface UserRedInterface{
     users:User[]
@@ -19,6 +20,10 @@ export interface UserRedInterface{
     authenticated:boolean,
     token:string
     role:string
+    profile_pic:string
+    first_name:string
+    email:string
+    second_name:string
 }
 
 const initialState:UserRedInterface={
@@ -37,7 +42,11 @@ const initialState:UserRedInterface={
     registerFailure:"",
     authenticated:false,
     token:"",
-    role:""
+    role:"",
+    profile_pic:'',
+    first_name:'',
+    email:'',
+    second_name:'',
 }
 
 export const UserReducer=createReducer(
@@ -67,7 +76,11 @@ on(UserActions.logInSuccess, (state,action):UserRedInterface=>{
         logInSuccess:action.message,
         authenticated:true,
         token:action.token,
-        role:action.role
+        role:action.role,
+        email:action.email,
+        first_name:action.first_name,
+        second_name:action.second_name,
+        profile_pic:action.profile_pic
     }
 }),
 on(UserActions.logInFailure, (state,action):UserRedInterface=>{
@@ -76,7 +89,11 @@ on(UserActions.logInFailure, (state,action):UserRedInterface=>{
         logInFailure:action.error,
         logInSuccess:"",
         token:"",
-        role:""
+        role:"",
+        email:"",
+        first_name:"",
+        second_name:"",
+        profile_pic:""
     }
 }),
 
@@ -134,14 +151,6 @@ on(UserActions.registerSuccess, (state,action):UserRedInterface=>{
         registerFailure:"",
         registerSuccess:action.message
     }
-}),
-
-on(UserActions.registerFailure, (state,action):UserRedInterface=>{
-    return {
-        ...state,
-        registerFailure:action.error,
-        registerSuccess:""
-    }
 })
 )
 
@@ -153,4 +162,10 @@ export const getSingleUser=createSelector(getUsers,getUserId, (users,user_id)=>{
     return users.find(user=>user.user_id===user_id) as User
 })
 export const getAuthStatus=createSelector(getUsersState, state=>state.authenticated)
-export const getRole=createSelector(getUsersState, state=>state.role)
+export const getRole=createSelector(getUsersState, state=>{
+    console.log(state);
+    return state.role
+    
+})
+export const getLogError=createSelector(getUsersState, state=> state.logInFailure)
+export const getCurrentUserFmame=createSelector(getUsersState, (state)=>state.first_name)

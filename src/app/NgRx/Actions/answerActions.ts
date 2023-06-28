@@ -1,8 +1,8 @@
 import { createAction, props } from "@ngrx/store";
-import { Answer } from "src/app/Interfaces/questionInterfaces";
+import { Answer, AnswerRequest } from "src/app/Interfaces/questionInterfaces";
 
 //Post Answer
-export const postAnswer=createAction('[Question]-PostAnswer',props<{answer:Answer}>())
+export const postAnswer=createAction('[Question]-PostAnswer',props<{question_id:string,answer:string}>())
 export const postAnswerSuccess=createAction('[Question]-PostAnswerSuccess',props<{message:string}>())
 export const postAnswerFailure=createAction('[Question]-PostAnswerFailure',props<{error:string}>())
 

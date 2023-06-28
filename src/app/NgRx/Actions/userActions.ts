@@ -9,13 +9,18 @@ export const registerFailure=createAction('[Users]-RegisterFailure',props<{error
 
 //Log In
 export const logIn=createAction('[Users]-LogIn',props<{email:string, password:string}>())
-export const logInSuccess=createAction('[Users]-LogInSuccess',props<{message:string,token:string,role:string}>())
+export const logInSuccess=createAction('[Users]-LogInSuccess',props<{message:string,token:string,role:string,profile_pic:string,first_name:string,second_name:string,email:string}>())
 export const logInFailure=createAction('[Users]-LogInFailure',props<{error:string}>())
 
 //Geu User By Id
 export const getUser=createAction('[Users]-GetUser',props<{user_id:string}>())
-export const getUserSuccess=createAction('[Users]-GetUserSuccess',props<{user:User}>())
+export const getUserSuccess=createAction('[Users]-GetUserSuccess',props<{user:User[]}>())
 export const getUserFailure=createAction('[Users]-GetUserFailure',props<{error:string}>())
+
+//Geu Logged in User
+export const getLoggedUser=createAction('[Users]-GetLoggedUser')
+export const getLoggedUserSuccess=createAction('[Users]-GetLoggedUserSuccess',props<{profile_pic:string,first_name:string,second_name:string, email:string, user_id:string, deactivate:number,email_sent:number}>())
+export const getLoggedUserFailure=createAction('[Users]-GetLoggedUserFailure',props<{error:string}>())
 
 //update user Details
 export const updateUser=createAction('[Users]-UpdateQuestion',props<{user:User}>())

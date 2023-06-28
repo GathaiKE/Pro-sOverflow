@@ -19,6 +19,7 @@ export interface RegisterSuccess{
     message:string
 }
 
+
 export interface NewUser{
     profile_pic:string
     first_name:string
@@ -32,4 +33,23 @@ export interface LogInSuccess{
     token:string
     role:string
     username:string
+    email:string
+    first_name:string
+    second_name:string
+    profile_pic:string
+}
+
+export interface CurrentUser{
+    message:string
+    token:string
+    role:string
+    username:string
+    email:string
+    first_name:string
+    second_name:string
+    profile_pic:string
+}
+
+export interface LogInError{
+    error:string
 }

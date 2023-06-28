@@ -30,6 +30,14 @@ export interface Answer {
     accepted:number
 }
 
+export interface AnswerRequest{
+    answer:string
+}
+
+export interface PostAnswerSuccess{
+    message:string
+}
+
 export interface Comment{
     comment_id:string
     comment:string
@@ -44,4 +52,9 @@ export interface Tag{
 
 export interface PostQuestionSuccess{
     message:string
+}
+
+export interface TagSuccess{
+    tag_id:string
+    tag:string
 }

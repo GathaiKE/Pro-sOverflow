@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { NewQuestion, Question, UpdatedQuestion } from "src/app/Interfaces/questionInterfaces";
+import { NewQuestion, PostQuestionSuccess, Question, TagSuccess, UpdatedQuestion } from "src/app/Interfaces/questionInterfaces";
 
 //Get All Questions
 export const getQuestions=createAction('[Questions]-GetQuestions')
@@ -8,6 +8,11 @@ export const getQuestionFailure=createAction('[Questions]-GetQuestionsFailure',p
 
 //Get a single question
 export const getSingleQuestion=createAction('[Questions]-GetSingleQuestion',props<{question_id:string}>())
+
+//Get Questions fro user
+export const getUserQuestions=createAction('[Questions]-GetUserQuestions')
+export const getUserQuestionsSuccess=createAction('[Questions]-GetUserQuestionsSuccess',props<{questions:Question[]}>())
+export const getUserQuestionsFailure=createAction('[Questions]-GetUserQuestionsFailure',props<{error:string}>())
 
 //Post a Qustion
 export const postQuestion=createAction('[Question]-PostQuestion',props<{question:NewQuestion}>())
@@ -23,3 +28,8 @@ export const updateQuestionFailure=createAction('[Question]-UpdateQuestionFailur
 export const deleteQuestion=createAction('[Question]-DeleteQuestion',props<{question_id:string}>())
 export const deleteQuestionSuccess=createAction('[Question]-DeleteQuestionSuccess',props<{message:string}>())
 export const deleteQuestionFailure=createAction('[Question]-DeleteQuestionFailure',props<{error:string}>())
+
+//Get Tags
+export const getTags=createAction('[Question]-GetTags')
+export const getTagsSuccess=createAction('[Question]-GetTagsSuccess',props<{Tags:TagSuccess[]}>())
+export const getTagsFailure=createAction('[Question]-GetTagsFailure',props<{error:string}>())

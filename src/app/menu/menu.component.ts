@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { getRole } from '../NgRx/Reducers/userReducer';
-import {take} from 'rxjs'
+import {Observable, take} from 'rxjs'
 
 @Component({
   selector: 'app-menu',
@@ -12,15 +12,15 @@ import {take} from 'rxjs'
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent {
+export class MenuComponent implements OnInit{
+    isAdmin$!: Observable<string>
 
     constructor(private Store:Store, private Router:Router){}
 
-    isAdmin(): boolean {
-      let isAdmin = false;
-      this.Store.select(getRole).pipe(take(1)).subscribe(role => {
-        isAdmin = role === "admin";
-      });
-      return isAdmin;
+    ngOnInit(): void {
+      this.isAdmin$ = this.Store.pipe(select(getRole));
+      console.log(this.isAdmin$);
+      
     }
+
 }

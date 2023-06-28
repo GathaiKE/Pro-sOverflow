@@ -43,165 +43,20 @@
         </div>
         <div class="w-3/4 overflow-y-auto border-l-2 border-white">
             <h2 class="text-lg font-bold underline underline-offset-4 text-center">John Doe's Questions</h2>
-            <div class="flex w-full gap-8 pb-2 border-b-2 border-primary-light">
-                <div class="flex flex-col w-fit gap-3">
-                    <span>Votes : 5</span>
-                    <span>Answersn : 5</span>
+            <div *ngIf="questions$ | async as questions">
+                <div class="flex w-full gap-8 pb-2 border-b-2 border-primary-light" *ngFor="let q of questions">
+                    <div class="flex flex-col w-fit gap-3">
+                        <span>Votes : 5</span>
+                        <span>Answersn : 5</span>
+                    </div>
+                    <div class="flex flex-col gap-3">
+                        <span>{{q.title}}</span>
+                        <span class="flex list-none gap-3">
+                            <li *ngFor="let t of q.tags">{{t.tag}}</li>
+                        </span>
+                    </div>
+                    <button type="button" class="bg-gray-300 text-black w-24 active:bg-red-500 active:text-white">Delete</button>
                 </div>
-                <div class="flex flex-col gap-3">
-                    <span>What is Open AI?</span>
-                    <span class="flex list-none gap-3">
-                        <li>#Open AI</li>
-                        <li>#JavaScript</li>
-                        <li>#TypeScript</li>
-                        <li>#Angular</li>
-                    </span>
-                </div>
-                <button type="button" class="bg-gray-300 text-black w-24 active:bg-red-500 active:text-white">Delete</button>
-            </div>
-            <div class="flex w-full gap-8 pb-2 border-b-2 border-primary-light">
-                <div class="flex flex-col w-fit gap-3">
-                    <span>Votes : 5</span>
-                    <span>Answersn : 5</span>
-                </div>
-                <div class="flex flex-col gap-3">
-                    <span>What is Open AI?</span>
-                    <span class="flex list-none gap-3">
-                        <li>#Open AI</li>
-                        <li>#JavaScript</li>
-                        <li>#TypeScript</li>
-                        <li>#Angular</li>
-                    </span>
-                </div>
-                <button type="button" class="bg-gray-300 text-black w-24 active:bg-red-500 active:text-white">Delete</button>
-            </div>
-            <div class="flex w-full gap-8 pb-2 border-b-2 border-primary-light">
-                <div class="flex flex-col w-fit gap-3">
-                    <span>Votes : 5</span>
-                    <span>Answersn : 5</span>
-                </div>
-                <div class="flex flex-col gap-3">
-                    <span>What is Open AI?</span>
-                    <span class="flex list-none gap-3">
-                        <li>#Open AI</li>
-                        <li>#JavaScript</li>
-                        <li>#TypeScript</li>
-                        <li>#Angular</li>
-                    </span>
-                </div>
-                <button type="button" class="bg-gray-300 text-black w-24 active:bg-red-500 active:text-white">Delete</button>
-            </div>
-            <div class="flex w-full gap-8 pb-2 border-b-2 border-primary-light">
-                <div class="flex flex-col w-fit gap-3">
-                    <span>Votes : 5</span>
-                    <span>Answersn : 5</span>
-                </div>
-                <div class="flex flex-col gap-3">
-                    <span>What is Open AI?</span>
-                    <span class="flex list-none gap-3">
-                        <li>#Open AI</li>
-                        <li>#JavaScript</li>
-                        <li>#TypeScript</li>
-                        <li>#Angular</li>
-                    </span>
-                </div>
-                <button type="button" class="bg-gray-300 text-black w-24 active:bg-red-500 active:text-white">Delete</button>
-            </div>
-            <div class="flex w-full gap-8 pb-2 border-b-2 border-primary-light">
-                <div class="flex flex-col w-fit gap-3">
-                    <span>Votes : 5</span>
-                    <span>Answersn : 5</span>
-                </div>
-                <div class="flex flex-col gap-3">
-                    <span>What is Open AI?</span>
-                    <span class="flex list-none gap-3">
-                        <li>#Open AI</li>
-                        <li>#JavaScript</li>
-                        <li>#TypeScript</li>
-                        <li>#Angular</li>
-                    </span>
-                </div>
-                <button type="button" class="bg-gray-300 text-black w-24 active:bg-red-500 active:text-white">Delete</button>
-            </div>
-            <div class="flex w-full gap-8 pb-2 border-b-2 border-primary-light">
-                <div class="flex flex-col w-fit gap-3">
-                    <span>Votes : 5</span>
-                    <span>Answersn : 5</span>
-                </div>
-                <div class="flex flex-col gap-3">
-                    <span>What is Open AI?</span>
-                    <span class="flex list-none gap-3">
-                        <li>#Open AI</li>
-                        <li>#JavaScript</li>
-                        <li>#TypeScript</li>
-                        <li>#Angular</li>
-                    </span>
-                </div>
-                <button type="button" class="bg-gray-300 text-black w-24 active:bg-red-500 active:text-white">Delete</button>
-            </div>
-            <div class="flex w-full gap-8 pb-2 border-b-2 border-primary-light">
-                <div class="flex flex-col w-fit gap-3">
-                    <span>Votes : 5</span>
-                    <span>Answersn : 5</span>
-                </div>
-                <div class="flex flex-col gap-3">
-                    <span>What is Open AI?</span>
-                    <span class="flex list-none gap-3">
-                        <li>#Open AI</li>
-                        <li>#JavaScript</li>
-                        <li>#TypeScript</li>
-                        <li>#Angular</li>
-                    </span>
-                </div>
-                <button type="button" class="bg-gray-300 text-black w-24 active:bg-red-500 active:text-white">Delete</button>
-            </div>
-            <div class="flex w-full gap-8 pb-2 border-b-2 border-primary-light">
-                <div class="flex flex-col w-fit gap-3">
-                    <span>Votes : 5</span>
-                    <span>Answersn : 5</span>
-                </div>
-                <div class="flex flex-col gap-3">
-                    <span>What is Open AI?</span>
-                    <span class="flex list-none gap-3">
-                        <li>#Open AI</li>
-                        <li>#JavaScript</li>
-                        <li>#TypeScript</li>
-                        <li>#Angular</li>
-                    </span>
-                </div>
-                <button type="button" class="bg-gray-300 text-black w-24 active:bg-red-500 active:text-white">Delete</button>
-            </div>
-            <div class="flex w-full gap-8 pb-2 border-b-2 border-primary-light">
-                <div class="flex flex-col w-fit gap-3">
-                    <span>Votes : 5</span>
-                    <span>Answersn : 5</span>
-                </div>
-                <div class="flex flex-col gap-3">
-                    <span>What is Open AI?</span>
-                    <span class="flex list-none gap-3">
-                        <li>#Open AI</li>
-                        <li>#JavaScript</li>
-                        <li>#TypeScript</li>
-                        <li>#Angular</li>
-                    </span>
-                </div>
-                <button type="button" class="bg-gray-300 text-black w-24 active:bg-red-500 active:text-white">Delete</button>
-            </div>
-            <div class="flex w-full gap-8 pb-2 border-b-2 border-primary-light">
-                <div class="flex flex-col w-fit gap-3">
-                    <span>Votes : 5</span>
-                    <span>Answersn : 5</span>
-                </div>
-                <div class="flex flex-col gap-3">
-                    <span>What is Open AI?</span>
-                    <span class="flex list-none gap-3">
-                        <li>#Open AI</li>
-                        <li>#JavaScript</li>
-                        <li>#TypeScript</li>
-                        <li>#Angular</li>
-                    </span>
-                </div>
-                <button type="button" class="bg-gray-300 text-black w-24 active:bg-red-500 active:text-white">Delete</button>
             </div>
         </div>
     </div>

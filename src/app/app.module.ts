@@ -27,6 +27,7 @@ import { answerReducer } from './NgRx/Reducers/answerReducers';
 import { AnswerEffectsService } from './NgRx/Effects/answer-effects.service';
 import { UserReducer } from './NgRx/Reducers/userReducer';
 import { UserEffectaService } from './NgRx/Effects/user-effecta.service';
+import { FilterPipe } from './Pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -35,22 +36,9 @@ import { UserEffectaService } from './NgRx/Effects/user-effecta.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AdminComponent,
-    FooterComponent,
-    HeaderComponent,
-    HomeComponent,
-    LandingComponent,
-    LogInComponent,
-    MenuComponent,
-    ProfileComponent,
-    AskQuestionComponent,
-    QuestionDetailsComponent,
-    QuestionStatsComponent,
-    RegisterComponent,
-    ResetPasswordComponent,
-    CommentComponent,
     HttpClientModule,
-    StoreModule.forRoot({question:QuestionsReducer,answer:answerReducer, user:UserReducer}),
+    FilterPipe,
+    StoreModule.forRoot({question:QuestionsReducer,answer:answerReducer, users:UserReducer}),
     EffectsModule.forRoot([QuestionEffectsService,AnswerEffectsService,UserEffectaService]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
