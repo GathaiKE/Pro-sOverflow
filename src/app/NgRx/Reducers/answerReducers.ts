@@ -1,5 +1,5 @@
 import { State, createFeatureSelector, createReducer,createSelector,on } from "@ngrx/store";
-import { Answer } from "src/app/Interfaces/questionInterfaces";
+import { Answer, PostAnswerSuccess } from "src/app/Interfaces/questionInterfaces";
 import * as AnswerActions from '../Actions/answerActions'
 
 
@@ -7,7 +7,7 @@ export interface AnswerRedInterface{
     answers:Answer[]
     error:string
     question_id:string
-    postAnswerSuccess:string
+    postAnswerSuccess:PostAnswerSuccess
     postAnswerFailure:string
     updateAnswerSuccess:string
     updateAnswerFailure:string
@@ -17,13 +17,18 @@ export interface AnswerRedInterface{
     upvoteFailure:string
     downvoteSuccess:string
     downvoteFailure:string
+    user_id:string,
+    postCommentFailure:string
+    postCommentSuccess:string
 }
 
 const initialState:AnswerRedInterface={
     answers:[],
     error:"",
     question_id:"",
-    postAnswerSuccess:"",
+    postAnswerSuccess:{
+        message:""
+    },
     postAnswerFailure:"",
     updateAnswerSuccess:"",
     updateAnswerFailure:"",
@@ -32,7 +37,10 @@ const initialState:AnswerRedInterface={
     upvoteSuccess:"",
     upvoteFailure:"",
     downvoteSuccess:"",
-    downvoteFailure:""
+    downvoteFailure:"",
+    user_id:"",
+    postCommentFailure:"",
+    postCommentSuccess:""
 }
 
 export const answerReducer= createReducer(
@@ -75,7 +83,9 @@ export const answerReducer= createReducer(
         return {
             ...state,
             postAnswerFailure:action.error,
-            postAnswerSuccess:""
+            postAnswerSuccess:{
+                message:""
+            }
         }
     }),
     
@@ -139,7 +149,23 @@ export const answerReducer= createReducer(
             downvoteFailure:action.error,
             downvoteSuccess:""
         }
-    })
+    }),
+
+    on(AnswerActions.postCommentSuccess, (state,action):AnswerRedInterface=>{
+        return {
+            ...state,
+            postCommentFailure:"",
+            postCommentSuccess:action.message
+        }
+    }),
+
+    on(AnswerActions.postCommentFailure, (state,action):AnswerRedInterface=>{
+        return {
+            ...state,
+            postCommentFailure:action.error,
+            postCommentSuccess:""
+        }
+    }),
 )
 
 const getAnswerState=createFeatureSelector<AnswerRedInterface>('answer')
@@ -149,3 +175,10 @@ export const getQuestId=createSelector(getAnswerState, (state)=>state.question_i
 export const getQuestAnswers=createSelector(getAnswersSuccess,getQuestId, (answers,question_id)=>{
     return answers.filter((answer)=>answer.question_id===question_id) as Answer[]
 })
+
+export const postAnswerSuccess=createSelector(getAnswerState, state=>state.postAnswerSuccess)
+export const postAnswerFailure=createSelector(getAnswerState, state=>state.postAnswerFailure)
+// export const getUserId=createSelector(getAnswerState, state=> state.user_id)
+// export const getAnswerUserId=createSelector(getAnswerState, getUserId, (answers,user_id)=>{
+//     return answers.filter(user_id=>)
+// })

@@ -26,7 +26,6 @@ constructor(private Store:Store, private Router:Router){}
   submit(form:NgForm){
       this.Store.dispatch(UserActions.logIn(form.value))
       this.error = this.Store.select(getLogError)
-      
   }
   
   isLoggedIn(): void {

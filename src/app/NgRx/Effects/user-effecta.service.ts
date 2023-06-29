@@ -39,14 +39,11 @@ export class UserEffectaService {
             localStorage.setItem('token',res.token)
             localStorage.setItem('role',res.role)
             
-            return UserActions.logInSuccess({message:res.message,token:res.token,role:res.role,email:res.email,profile_pic:res.profile_pic,first_name:res.first_name,second_name:res.second_name})
+            return UserActions.logInSuccess({message:res.message,token:res.token,role:res.role,email:res.email,profile_pic:res.profile_pic,first_name:res.first_name,second_name:res.second_name,user_id:res.user_id})
           }),
+          tap(()=> this.store.select(getAuthStatus) ? this.router.navigate(['/home']) : ''),
           catchError(err=>of(UserActions.logInFailure({error:err.error.message})))
         )
-      }),
-      tap(action=> {
-        this.store.select(getAuthStatus) ? this.router.navigate(['/home']) : ''
-        // 
       })
     )
   })

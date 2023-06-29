@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import * as QuestionActions from '../NgRx/Actions/questionActions'
 import { getAllTags } from '../NgRx/Reducers/questionReducers';
 import { AppState } from '../NgRx/AppState';
+import { CoordinatorService } from '../Services/coordinator.service';
 
 @Component({
   selector: 'app-tags',
@@ -17,10 +18,15 @@ import { AppState } from '../NgRx/AppState';
 export class TagsComponent implements OnInit{
 tags$!:Observable<TagSuccess[]>
 
-constructor(private store:Store<AppState>){}
+constructor(private store:Store<AppState>, private cordinator:CoordinatorService){}
 
 ngOnInit(): void {
   this.store.dispatch(QuestionActions.getTags())
   this.tags$=this.store.select(getAllTags)
 }
+
+onSelected(tag_id:string){
+  this.cordinator.onSelected(tag_id)
+}
+
 }

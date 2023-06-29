@@ -12,8 +12,8 @@
         
         <div class="md:flex hidden items-center flex-col md:flex-row float-right">
             <div class="flex-col-reverse cursor-pointer" [routerLink]="['/profile']">
-                <img src="../../assets/hero.jpeg" alt="User Profile" class="bg-primary-light rounded-full w-12 mx-auto">
-                <p class="font-bold">Brian Gathai</p>
+                <img src="{{profile_pic}}" alt="User Profile" class="bg-primary-light rounded-full w-12 mx-auto">
+                <p class="font-bold">{{first_name}} {{second_name}}</p>
             </div>
         </div>
 
@@ -31,7 +31,8 @@
                 <a [routerLink]="['/home']" routerLinkActive="text-gold" class="hover:bg-gray-700 w-full p-2">Home</a>
                 <a [routerLink]="['/profile']" routerLinkActive="text-gold" class="hover:bg-gray-700 w-full p-2">Profile</a>
                 <a [routerLink]="['/tags']" routerLinkActive="text-gold" class="hover:bg-gray-700 w-full p-2">Tags</a>
-                <a [routerLink]="['/admin']" routerLinkActive="text-gold" class="hover:bg-gray-700 w-full p-2" *ngIf="isAdmin$ |async">Admin</a>
+                <a [routerLink]="['/admin']" routerLinkActive="text-gold" class="hover:bg-gray-700 w-full p-2" *ngIf="(isAdmin$=='admin')">Admin</a>
+                <a [routerLink]="['']" class="hover:bg-gray-700 w-full p-2" (click)="logout()">log Out</a>
             </div>
         </div>
     </div>

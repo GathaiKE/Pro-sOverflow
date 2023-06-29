@@ -13,14 +13,21 @@ import {Observable, take} from 'rxjs'
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit{
-    isAdmin$!: Observable<string>
+    isAdmin$!:string
 
     constructor(private Store:Store, private Router:Router){}
 
     ngOnInit(): void {
-      this.isAdmin$ = this.Store.pipe(select(getRole));
-      console.log(this.isAdmin$);
+      this.Store.select(getRole).subscribe(role=> {
+        console.log(role)
+        this.isAdmin$=role
+        return role
+        
+      })
       
+    }
+    isAdmin(){
+      this.isAdmin$=="user"?true:false
     }
 
 }

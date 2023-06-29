@@ -1,6 +1,7 @@
 import { createFeatureSelector, createReducer, createSelector, on } from "@ngrx/store";
 import { PostQuestionSuccess, Question, Tag, TagSuccess } from "src/app/Interfaces/questionInterfaces";
 import * as QuestionActions from '../Actions/questionActions'
+import { combineLatest } from "rxjs";
 
 export interface questionReducerInterface{
     questions:Question[]
@@ -145,7 +146,7 @@ const getQuestionState=createFeatureSelector<questionReducerInterface>('question
 export const getQuestions=createSelector(getQuestionState,(state)=>state.questions)
 export const getQuestErr=createSelector(getQuestionState,(state)=>state.error)
 export const getQuestById=createSelector(getQuestionState,(state)=>state.question_id)
-export const getUserQuests=createSelector(getQuestionState, state=> state.questions)
+export const getUserQuests=createSelector(getQuestionState, state=> state.userQuestions)
 export const getUserQuesrErr=createSelector(getQuestionState, state=>state.userQuestionsError)
 export const getSingleQuestion=createSelector(getQuestions,getQuestById,(questions,question_id)=>{
     return questions.find(question=>question.question_id===question_id) as Question

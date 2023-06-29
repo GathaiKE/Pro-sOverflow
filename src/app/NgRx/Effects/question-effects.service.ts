@@ -2,8 +2,11 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { QuestionsService } from 'src/app/Services/questions.service';
 import * as QuestionActions from '../Actions/questionActions'
+import * as AnswerActions from '../Actions/answerActions'
 import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { getQuestAnswers } from '../Reducers/answerReducers';
+import { getUserQuests } from '../Reducers/questionReducers';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +19,8 @@ export class QuestionEffectsService {
     return this.action$.pipe(
       ofType(QuestionActions.getQuestions),
       mergeMap(()=> this.QuestionService.getQuestions().pipe(
-        map(question=>QuestionActions.getQuestionSuccess({questions:question}))
+        map(question=>QuestionActions.getQuestionSuccess({questions:question})),
+        tap(()=> this.Store.select(getQuestAnswers))
       )),
       catchError(err=> {
         console.log(err);
@@ -43,9 +47,10 @@ export class QuestionEffectsService {
   getUserQuestions$= createEffect(()=>{
     return this.action$.pipe(
       ofType(QuestionActions.getUserQuestions),
-      mergeMap(action=> this.QuestionService.getUserQuestions().pipe(
+      mergeMap(()=> this.QuestionService.getUserQuestions().pipe(
         map(questions=> QuestionActions.getUserQuestionsSuccess({questions})),
-        tap(question=> this.Store.dispatch(QuestionActions.getUserQuestions()))
+        tap(()=> this.Store.select(getUserQuests)),
+        tap(()=> this.Store.select(getQuestAnswers))
       )),
       catchError(err=> {
         return of(QuestionActions.getUserQuestionsFailure({error:err.error}))

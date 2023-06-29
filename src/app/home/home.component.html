@@ -11,7 +11,7 @@
         </div>
         <div class="flex flex-col text-white md:border-l-4 border-l-primary-light h-screen gap-1 w-full" *ngIf="questions$ | async as questions; else noQuestions">
             
-            <div class="bg-black p-5 hover:opacity-80" *ngFor="let q of questions | filter:search" [routerLink]="['/details',q.question_id]">
+            <div class="bg-black p-5 hover:opacity-80" *ngFor="let q of questions" [routerLink]="['/details',q.question_id]">
                 <p class="break-words">{{q.title | brief:50}}</p>
                 <div class="flex flex-wrap list-none gap-1 p-2 md:gap-5 md:p-4">
                     <li class="bg-primary-light my-auto rounded p-2 " *ngFor="let tag of q.tags">{{tag.tag}}</li>

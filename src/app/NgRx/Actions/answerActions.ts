@@ -1,9 +1,9 @@
 import { createAction, props } from "@ngrx/store";
-import { Answer, AnswerRequest } from "src/app/Interfaces/questionInterfaces";
+import { Answer, AnswerRequest, PostAnswerSuccess } from "src/app/Interfaces/questionInterfaces";
 
 //Post Answer
 export const postAnswer=createAction('[Question]-PostAnswer',props<{question_id:string,answer:string}>())
-export const postAnswerSuccess=createAction('[Question]-PostAnswerSuccess',props<{message:string}>())
+export const postAnswerSuccess=createAction('[Question]-PostAnswerSuccess',props<{message:PostAnswerSuccess}>())
 export const postAnswerFailure=createAction('[Question]-PostAnswerFailure',props<{error:string}>())
 
 //Get All Answers
@@ -43,3 +43,8 @@ export const acceptFailure=createAction('[Question]-AcceptAnswerFailure',props<{
 export const getAnsByQuest=createAction('[Question]-GetAnsByQuest')
 export const getAnsByQuestSuccess=createAction('[Question]-GetAnsByQuestSuccess',props<{question_id:string}>())
 export const getAnsByQuestFailure=createAction('[Question]-GetAnsByQuestFailure',props<{error:string}>())
+
+//Post comment
+export const postComment=createAction('[Question]-PostComment',props<{answer_id:string,comment:string}>())
+export const postCommentSuccess=createAction('[Question]-PostCommentSuccess',props<{message:string}>())
+export const postCommentFailure=createAction('[Question]-PostCommentFailure',props<{error:string}>())

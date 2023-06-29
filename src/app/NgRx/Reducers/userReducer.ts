@@ -80,7 +80,8 @@ on(UserActions.logInSuccess, (state,action):UserRedInterface=>{
         email:action.email,
         first_name:action.first_name,
         second_name:action.second_name,
-        profile_pic:action.profile_pic
+        profile_pic:action.profile_pic,
+        user_id:action.user_id
     }
 }),
 on(UserActions.logInFailure, (state,action):UserRedInterface=>{
@@ -93,7 +94,8 @@ on(UserActions.logInFailure, (state,action):UserRedInterface=>{
         email:"",
         first_name:"",
         second_name:"",
-        profile_pic:""
+        profile_pic:"",
+        user_id:""
     }
 }),
 
@@ -163,9 +165,13 @@ export const getSingleUser=createSelector(getUsers,getUserId, (users,user_id)=>{
 })
 export const getAuthStatus=createSelector(getUsersState, state=>state.authenticated)
 export const getRole=createSelector(getUsersState, state=>{
-    console.log(state);
+    // console.log(state);
     return state.role
     
 })
 export const getLogError=createSelector(getUsersState, state=> state.logInFailure)
 export const getCurrentUserFmame=createSelector(getUsersState, (state)=>state.first_name)
+export const getCurrentUsersmame=createSelector(getUsersState, (state)=>state.second_name)
+export const getCurrentUserEmail=createSelector(getUsersState, (state)=>state.email)
+export const getCurrentUserPic=createSelector(getUsersState, (state)=>state.profile_pic)
+export const getCurrentUserId=createSelector(getUsersState, (state)=>state.user_id)

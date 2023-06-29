@@ -36,4 +36,14 @@ export class QuestionStatsComponent implements OnInit{
       this.answers$=this.Store.select(getQuestAnswers)
     })
   }
+
+  accept(answer_id:string){
+    this.Store.dispatch(AnswerActions.acceptAnswer({answer_id}))
+  }
+  upvote(answer_id:string){
+    this.Store.dispatch(AnswerActions.upvoteAnswer({answer_id}))
+  }
+  downvote(answer_id:string){
+    this.Store.dispatch(AnswerActions.downvoteAnswer({answer_id}))
+  }
 }

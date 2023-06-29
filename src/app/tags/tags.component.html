@@ -1,6 +1,6 @@
 <div class="lg:flex lg:flex-col lg:justify-start lg:p-5 lg:font-irish lg:text-3xl text-white lg:w-64 bg-primary-dark h-screen overflow-y-auto hidden md:auto">
     <h2 class="font-irish text-center underline">Tags.</h2>
     <div class="flex flex-col list-none gap-1" *ngIf="tags$ | async as tags">
-        <li routerLink="home" class="border-b-2 text-base border-primary-dark p-2 active:text-primary-dark cursor-pointer" *ngFor="let t of tags">#{{t.tag}}</li>
+        <li (change)="onSelected(t.tag_id)" class="border-b-2 text-base border-primary-dark p-2 active:text-primary-dark cursor-pointer" value="{{t.tag_id}}" *ngFor="let t of tags">#{{t.tag}}</li>
     </div>
 </div>

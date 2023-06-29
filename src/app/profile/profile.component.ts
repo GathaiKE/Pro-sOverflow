@@ -13,7 +13,7 @@ import * as QuestionActions from '../NgRx/Actions/questionActions'
 import { getUserQuests } from '../NgRx/Reducers/questionReducers';
 import { CurrentUser} from '../Interfaces/userInterface';
 import * as UserActions from '../NgRx/Actions/userActions'
-import { getCurrentUserFmame } from '../NgRx/Reducers/userReducer';
+import { getCurrentUserEmail, getCurrentUserFmame, getCurrentUserPic, getCurrentUsersmame } from '../NgRx/Reducers/userReducer';
 
 @Component({
   selector: 'app-profile',
@@ -24,19 +24,35 @@ import { getCurrentUserFmame } from '../NgRx/Reducers/userReducer';
 })
 export class ProfileComponent implements OnInit{
 Questions!:Observable<Question[]>
-first_name!:Observable<String>
-second_name!:Observable<String>
-email!:Observable<String>
-profile_pic!:Observable<String>
+first_name!:String
+second_name!:String
+email!:String
+profile_pic!:String
 
 constructor(private Store:Store<AppState>){}
 ngOnInit(): void {
   this.Store.dispatch(QuestionActions.getUserQuestions())
   this.Questions=this.Store.select(getUserQuests)
 
-  this.first_name=this.Store.select(getCurrentUserFmame)
-  console.log(this.first_name);
-  // this.liveUser.push(this.user)
+  this.Store.select(getCurrentUserFmame).subscribe(res=>{
+    console.log(res)
+    this.first_name=res
+  })
+
+  this.Store.select(getCurrentUsersmame).subscribe(res=>{
+    console.log(res)
+    this.second_name=res
+  })
+  this.Store.select(getCurrentUserEmail).subscribe(res=>{
+    console.log(res)
+    this.email=res
+  })
+
+  this.Store.select(getCurrentUserPic).subscribe(res=>{
+    console.log(res)
+    this.profile_pic=res
+  })
+
 }
 
 deleteQuestion(question_id:string){

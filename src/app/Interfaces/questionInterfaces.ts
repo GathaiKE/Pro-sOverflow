@@ -54,7 +54,19 @@ export interface PostQuestionSuccess{
     message:string
 }
 
+export interface PostCommentSuccess{
+    message:string
+}
+
 export interface TagSuccess{
     tag_id:string
     tag:string
+}
+
+export interface AnswerForm{
+    ans:string
+}
+
+export interface CommentForm{
+    comment:string
 }

@@ -11,20 +11,21 @@ import { getQuestions } from '../NgRx/Reducers/questionReducers';
 })
 export class CoordinatorService {
 
-  private searchQuerySubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
-  public currentSearchQuery: Observable<string> = this.searchQuerySubject.asObservable();
-
   private questionsSubject: BehaviorSubject<Question[]> = new BehaviorSubject<Question[]>([]);
   public questions$: Observable<Question[]> = this.questionsSubject.asObservable();
+
+  private selectedTagSubject:BehaviorSubject<string>=new BehaviorSubject<string>('')
+  public selectedTagAction$=this.selectedTagSubject.asObservable()
+
   constructor(private Store:Store<AppState>) { }
 
-  emitSearchQuery(searchQuery: string) {
-    this.searchQuerySubject.next(searchQuery);
-  }
 
-  getQuestions(): Observable<Question[]> {
-    this.Store.dispatch(QuestionActions.getQuestions())
-    this.Store.select(getQuestions)
-    return this.questions$;
+  
+
+
+  onSelected(tag_id:string){
+    console.log(tag_id);
+    
+    this.selectedTagSubject.next(tag_id)
   }
 }

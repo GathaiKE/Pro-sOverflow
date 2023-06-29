@@ -28,6 +28,8 @@ import { AnswerEffectsService } from './NgRx/Effects/answer-effects.service';
 import { UserReducer } from './NgRx/Reducers/userReducer';
 import { UserEffectaService } from './NgRx/Effects/user-effecta.service';
 import { FilterPipe } from './Pipes/filter.pipe';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { AccessService } from './Services/access.service';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { FilterPipe } from './Pipes/filter.pipe';
     AppRoutingModule,
     HttpClientModule,
     FilterPipe,
+    FeedbackComponent,
     StoreModule.forRoot({question:QuestionsReducer,answer:answerReducer, users:UserReducer}),
     EffectsModule.forRoot([QuestionEffectsService,AnswerEffectsService,UserEffectaService]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
@@ -45,4 +48,11 @@ import { FilterPipe } from './Pipes/filter.pipe';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+
+  constructor(private Servic:AccessService){}
+
+  
+
+  
+}

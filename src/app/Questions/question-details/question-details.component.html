@@ -10,11 +10,25 @@
                 </span>
             </div>
 
-            <div class="bg-black text-white h-full">
+            <div class="bg-black text-white h-full overflow-y-auto">
                 <h2 class="font-bold text-white pl-4">Answers</h2>
-                <div class="p-5 flex flex-col gap-3" *ngIf="answers | async as answers">
-                    <div class="flex gap-3 border-b-2 border-primary-light pb-2" *ngFor="let a of answers">
-                        <span>. </span><p>{{a.answer}}</p>
+                <div class="p-5 flex flex-col gap-3" >
+                    <div *ngIf="answers | async as answers" class="h-fit">
+                        <div class="flex flex-col-reverse md:flex-row border-b-2 border-primary-light pb-3 h-full w-full" *ngFor="let answer of answers">
+                            <div class="flex flex-row-reverse md:flex-col p-5 mt-3 md:items-center md:space-y-3">
+                                <span class="flex justify-evenly w-1/2 items-center md:justify-evenly md:w-full" (click)="upvote(answer.answer_id)">
+                                    <img src="../../../assets/heart1.png" alt="like" class="bg-white h-10 p-2 rounded cursor-pointer active:bg-gray-300">
+                                    <img src="../../../assets/unheart.png" alt="unlike" class="bg-white h-10 p-2 rounded cursor-pointer active:bg-gray-300" (click)="downvote(answer.answer_id)">
+                                </span>
+                                <span class="w-1/2 flex justify-evenly items-center md:space-x-3 md:w-full">
+                                    <a class="bg-gray-300 text-black px-2 active:bg-white cursor-pointer active:text-black w-fit rounded h-7 " *ngIf="answer.user_id==activeUserId" [routerLink]="['/comment',answer.answer_id]" >Update</a>
+                                    <a class="bg-gray-300 text-black px-2 active:bg-white cursor-pointer active:text-black w-fit rounded h-7 "[routerLink]="['/comment',answer.answer_id]" >Comment</a>
+                                </span>
+                            </div>
+                            <div class="p-2 flex items-center">
+                                <p class="w-full">. {{answer.answer}}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -33,3 +47,5 @@
         <app-tags></app-tags>
     </div>
 <app-footer></app-footer>
+
+<app-feedback *ngIf="message" [message]="message"></app-feedback>

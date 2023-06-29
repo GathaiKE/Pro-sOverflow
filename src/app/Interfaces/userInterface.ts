@@ -37,6 +37,7 @@ export interface LogInSuccess{
     first_name:string
     second_name:string
     profile_pic:string
+    user_id:string
 }
 
 export interface CurrentUser{

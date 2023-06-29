@@ -9,7 +9,7 @@ export const registerFailure=createAction('[Users]-RegisterFailure',props<{error
 
 //Log In
 export const logIn=createAction('[Users]-LogIn',props<{email:string, password:string}>())
-export const logInSuccess=createAction('[Users]-LogInSuccess',props<{message:string,token:string,role:string,profile_pic:string,first_name:string,second_name:string,email:string}>())
+export const logInSuccess=createAction('[Users]-LogInSuccess',props<{message:string,token:string,role:string,profile_pic:string,first_name:string,second_name:string,email:string,user_id:string}>())
 export const logInFailure=createAction('[Users]-LogInFailure',props<{error:string}>())
 
 //Geu User By Id
