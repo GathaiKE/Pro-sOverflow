@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { NewQuestion, PostQuestionSuccess, Question, TagSuccess, UpdatedQuestion } from "src/app/Interfaces/questionInterfaces";
+import { NewQuestion, PostQuestionSuccess, Question, TagSuccess, UpdateQuestionSuccess, UpdatedQuestion } from "src/app/Interfaces/questionInterfaces";
 
 //Get All Questions
 export const getQuestions=createAction('[Questions]-GetQuestions')
@@ -20,8 +20,8 @@ export const postQuestionSuccess=createAction('[Question]-PostQuestionSuccess',p
 export const postQuestionFailure=createAction('[Question]-PostQuestionFailure',props<{error:string}>())
 
 //UpdateQuestion
-export const updateQuestion=createAction('[Question]-UpdateQuestion',props<{updatedQuestion:UpdatedQuestion}>())
-export const updateQuestionSuccess=createAction('[Question]-UpdateQuestionSuccess',props<{mesage:string}>())
+export const updateQuestion=createAction('[Question]-UpdateQuestion',props<{question_id:string,updatedQuestion:Question}>())
+export const updateQuestionSuccess=createAction('[Question]-UpdateQuestionSuccess',props<{message:UpdateQuestionSuccess}>())
 export const updateQuestionFailure=createAction('[Question]-UpdateQuestionFailure',props<{error:string}>())
 
 //DeleteQuestion

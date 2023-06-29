@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { MenuComponent } from '../menu/menu.component';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Question } from '../Interfaces/questionInterfaces';
 import { Observable, take } from 'rxjs';
 import { BriefPipe } from '../Pipes/brief.pipe';
@@ -13,7 +13,7 @@ import * as QuestionActions from '../NgRx/Actions/questionActions'
 import { getUserQuests } from '../NgRx/Reducers/questionReducers';
 import { CurrentUser} from '../Interfaces/userInterface';
 import * as UserActions from '../NgRx/Actions/userActions'
-import { getCurrentUserEmail, getCurrentUserFmame, getCurrentUserPic, getCurrentUsersmame } from '../NgRx/Reducers/userReducer';
+import { getCurrentUserEmail, getCurrentUserFmame, getCurrentUserId, getCurrentUserPic, getCurrentUsersmame } from '../NgRx/Reducers/userReducer';
 
 @Component({
   selector: 'app-profile',
@@ -28,29 +28,29 @@ first_name!:String
 second_name!:String
 email!:String
 profile_pic!:String
+user_id!:string
 
-constructor(private Store:Store<AppState>){}
+constructor(private Store:Store<AppState>,private route:Router){}
 ngOnInit(): void {
   this.Store.dispatch(QuestionActions.getUserQuestions())
   this.Questions=this.Store.select(getUserQuests)
 
   this.Store.select(getCurrentUserFmame).subscribe(res=>{
-    console.log(res)
     this.first_name=res
   })
 
   this.Store.select(getCurrentUsersmame).subscribe(res=>{
-    console.log(res)
     this.second_name=res
   })
   this.Store.select(getCurrentUserEmail).subscribe(res=>{
-    console.log(res)
     this.email=res
   })
 
   this.Store.select(getCurrentUserPic).subscribe(res=>{
-    console.log(res)
     this.profile_pic=res
+  })
+  this.Store.select(getCurrentUserId).subscribe(res=>{
+    this.user_id=res
   })
 
 }
@@ -62,10 +62,10 @@ deleteQuestion(question_id:string){
 }
 
 updateQuestion(question_id:string){
-
+  this.route.navigate(['/update',question_id])
 }
 
 updateUser(user_id:string | undefined){
-
+  
 }
 }

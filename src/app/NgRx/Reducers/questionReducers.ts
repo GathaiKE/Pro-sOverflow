@@ -1,5 +1,5 @@
 import { createFeatureSelector, createReducer, createSelector, on } from "@ngrx/store";
-import { PostQuestionSuccess, Question, Tag, TagSuccess } from "src/app/Interfaces/questionInterfaces";
+import { PostQuestionSuccess, Question, Tag, TagSuccess, UpdateQuestionSuccess, UpdatedQuestion } from "src/app/Interfaces/questionInterfaces";
 import * as QuestionActions from '../Actions/questionActions'
 import { combineLatest } from "rxjs";
 
@@ -17,6 +17,8 @@ export interface questionReducerInterface{
     userQuestionsError:string,
     Tags:TagSuccess[]
     tagErr:string
+    updateSuccess:UpdateQuestionSuccess
+    updateError:string
 }
 
 const initialState:questionReducerInterface={
@@ -32,7 +34,11 @@ const initialState:questionReducerInterface={
     userQuestions:[],
     userQuestionsError:"",
     Tags:[],
-    tagErr:""
+    tagErr:"",
+    updateError:"",
+    updateSuccess:{
+        message:""
+    }
 }
 
 export const QuestionsReducer=createReducer(
@@ -80,16 +86,16 @@ export const QuestionsReducer=createReducer(
     on(QuestionActions.updateQuestionSuccess, (state,action):questionReducerInterface=>{
         return {
             ...state,
-            updateQuestionFailure:"",
-            updateQuestionSuccess:action.mesage
+            updateError:"",
+            updateSuccess:action.message
         }
     }),
 
     on(QuestionActions.updateQuestionFailure, (state,action):questionReducerInterface=>{
         return {
             ...state,
-            updateQuestionFailure:action.error,
-            updateQuestionSuccess:""
+            updateError:"",
+            updateSuccess:{message:""}
         }
     }),
 

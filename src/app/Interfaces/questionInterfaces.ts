@@ -17,7 +17,6 @@ export interface NewQuestion{
 export interface UpdatedQuestion{
     title:string
     body:string
-    tags:Tag[]
 }
 
 export interface Answer {
@@ -32,6 +31,14 @@ export interface Answer {
 
 export interface AnswerRequest{
     answer:string
+}
+
+export interface UpdateQuestionSuccess{
+    message:string
+}
+
+export interface UpdateAnswerSuccess{
+    message:string
 }
 
 export interface PostAnswerSuccess{

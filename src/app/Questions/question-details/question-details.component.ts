@@ -8,6 +8,7 @@ import { ActivatedRoute, Params, RouterModule } from '@angular/router';
 import {
   Answer,
   AnswerForm,
+  AnswerRequest,
   Question,
 } from 'src/app/Interfaces/questionInterfaces';
 import { Store } from '@ngrx/store';
@@ -53,6 +54,7 @@ export class QuestionDetailsComponent implements OnInit {
     ans: '',
   }
   message!:null | string
+  action: 'Add' | 'Update'='Add'
 
   ngOnInit(): void {
     this.Store.select(getQuestAnswers);
@@ -83,7 +85,7 @@ export class QuestionDetailsComponent implements OnInit {
 
   submit(form: NgForm) {
     this.route.params.subscribe((q: Params) => {
-      const answer: string = form.value;
+      const answer: AnswerRequest = form.value;
       this.Store.dispatch(
         AnswerActions.postAnswer({ answer, question_id: q['question_id'] })
       );
@@ -115,5 +117,13 @@ export class QuestionDetailsComponent implements OnInit {
   }
   downvote(answer_id: string) {
     this.Store.dispatch(AnswerActions.downvoteAnswer({ answer_id }));
+  }
+
+  update(answer_id:string){
+    this.action='Update'
+    // this.form.setValue({
+
+    // })
+    
   }
 }

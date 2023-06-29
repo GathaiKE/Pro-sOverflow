@@ -1,5 +1,5 @@
 import { State, createFeatureSelector, createReducer,createSelector,on } from "@ngrx/store";
-import { Answer, PostAnswerSuccess } from "src/app/Interfaces/questionInterfaces";
+import { Answer, PostAnswerSuccess, UpdateAnswerSuccess } from "src/app/Interfaces/questionInterfaces";
 import * as AnswerActions from '../Actions/answerActions'
 
 
@@ -9,7 +9,7 @@ export interface AnswerRedInterface{
     question_id:string
     postAnswerSuccess:PostAnswerSuccess
     postAnswerFailure:string
-    updateAnswerSuccess:string
+    updateAnswerSuccess:UpdateAnswerSuccess
     updateAnswerFailure:string
     acceptSuccess:string
     acceptFailure:string
@@ -30,7 +30,7 @@ const initialState:AnswerRedInterface={
         message:""
     },
     postAnswerFailure:"",
-    updateAnswerSuccess:"",
+    updateAnswerSuccess:{message:""},
     updateAnswerFailure:"",
     acceptSuccess:"",
     acceptFailure:"",
@@ -101,7 +101,7 @@ export const answerReducer= createReducer(
         return {
             ...state,
             updateAnswerFailure:action.error,
-            updateAnswerSuccess:""
+            updateAnswerSuccess:{message:""}
         }
     }),
 

@@ -13,7 +13,9 @@ const routes: Routes = [
   {path:'stats/:question_id',loadComponent:()=>import('./Questions/question-stats/question-stats.component').then(c=>c.QuestionStatsComponent) },
   {path:'admin',loadComponent:()=>import('./admin/admin.component').then(c=>c.AdminComponent) },
   {path:'comment/:answer_id',loadComponent:()=>import('./Questions/comment/comment.component').then(c=>c.CommentComponent) },
-  {path:'tags',loadComponent:()=>import('./mobiletags/mobiletags.component').then(c=>c.MobiletagsComponent) }
+  {path:'tags',loadComponent:()=>import('./mobiletags/mobiletags.component').then(c=>c.MobiletagsComponent) },
+  {path:'update/:question_id',loadComponent:()=>import('./update-question/update-question.component').then(c=>c.UpdateQuestionComponent) },
+  {path:'updateuser/:user_id',loadComponent:()=>import('./update-user/update-user.component').then(c=>c.UpdateUserComponent) }
 ];
 
 @NgModule({

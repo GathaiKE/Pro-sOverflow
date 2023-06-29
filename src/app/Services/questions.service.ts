@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { NewQuestion, TagSuccess, Question } from '../Interfaces/questionInterfaces';
+import { NewQuestion, TagSuccess, Question, UpdateQuestionSuccess } from '../Interfaces/questionInterfaces';
 import {HttpClient, HttpHeaders} from "@angular/common/http"
 import { Observable } from 'rxjs';
 
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class QuestionsService {
   token:string
-  headers:any
+  headers
 
   tokenn = localStorage.getItem('token') as string;
   headersn= {headers: new HttpHeaders().set('token',this.tokenn)}
@@ -50,10 +50,10 @@ export class QuestionsService {
     return this.http.post<string>(`http://localhost:4000/questions/post`,newQuestion,headers)
   }
   
-  updateQuestion(question_id:string,updatedQuestion:Question){
+  updateQuestion(question_id:string,updatedQuestion:Question):Observable<UpdateQuestionSuccess>{
     const token = localStorage.getItem('token') as string;
     const headers= {headers: new HttpHeaders().set('token',token)}
-    return this.http.put<Question>(`http://localhost:4000/questions/update/${question_id}`,updatedQuestion,headers)
+    return this.http.put<UpdateQuestionSuccess>(`http://localhost:4000/questions/update/${question_id}`,updatedQuestion,headers)
   }
 
     deleteQuestion(question_id:string):Observable<string>{

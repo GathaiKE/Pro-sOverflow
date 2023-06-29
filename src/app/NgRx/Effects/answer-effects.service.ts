@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AnswersService } from 'src/app/Services/answers.service';
 import * as AnswerActions from '../Actions/answerActions'
-import { catchError, map, mergeMap, of, tap } from 'rxjs';
+import { Observable, catchError, map, mergeMap, of, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { CommentsService } from 'src/app/Services/comments.service';
 import { getAnswersSuccess, getQuestAnswers } from '../Reducers/answerReducers';
@@ -79,6 +79,16 @@ export class AnswerEffectsService {
         )
       )),
       catchError(error=>of(AnswerActions.upvoteFailure({error})))
+    )
+  })
+
+  updateAnswer$=createEffect(()=>{
+    return this.action$.pipe(
+      ofType(AnswerActions.updateAnswer),
+      mergeMap(action=>this.AnswerService.updateAnswer(action.answer_id,action.answer).pipe(
+        map(message=> AnswerActions.updateAnswerSuccess({message}))
+      )),
+      catchError(error=> of(AnswerActions.updateAnswerFailure(error)))
     )
   })
 }

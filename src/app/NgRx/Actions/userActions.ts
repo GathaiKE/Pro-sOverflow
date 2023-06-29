@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { LogRequest, User } from "src/app/Interfaces/userInterface";
+import { LogRequest, User, UserUpdateSuccess } from "src/app/Interfaces/userInterface";
 
 
 //Register User
@@ -19,12 +19,12 @@ export const getUserFailure=createAction('[Users]-GetUserFailure',props<{error:s
 
 //Geu Logged in User
 export const getLoggedUser=createAction('[Users]-GetLoggedUser')
-export const getLoggedUserSuccess=createAction('[Users]-GetLoggedUserSuccess',props<{profile_pic:string,first_name:string,second_name:string, email:string, user_id:string, deactivate:number,email_sent:number}>())
+export const getLoggedUserSuccess=createAction('[Users]-GetLoggedUserSuccess',props<{user:User[]}>())
 export const getLoggedUserFailure=createAction('[Users]-GetLoggedUserFailure',props<{error:string}>())
 
 //update user Details
 export const updateUser=createAction('[Users]-UpdateQuestion',props<{user:User}>())
-export const updateUserSuccess=createAction('[Users]-UpdateQuestionSuccess',props<{message:string}>())
+export const updateUserSuccess=createAction('[Users]-UpdateQuestionSuccess',props<{message:UserUpdateSuccess}>())
 export const updateUserFailure=createAction('[Users]-UpdateQuestionFailure',props<{error:string}>())
 
 //Get All Users
@@ -34,7 +34,7 @@ export const getUsersFailure=createAction('[Users]-GetUsersFailure',props<{error
 
 //Dectivate
 export const deactivate=createAction('[Users]-Deactivate',props<{user_id:string}>())
-export const deactivateSuccess=createAction('[Users]-DeactivateSuccess',props<{message:string}>())
+export const deactivateSuccess=createAction('[Users]-DeactivateSuccess',props<{message:UserUpdateSuccess}>())
 export const deactivateFailure=createAction('[Users]-DeactivateFailure',props<{error:string}>())
 
 //Get all Deactivaed Users

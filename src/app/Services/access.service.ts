@@ -19,6 +19,6 @@ status!:Boolean
     }
 
     authenticated(){
-      this.status?console.log("You are authenticated"):this.route.navigate(['/logIn'])
+      !this.status?this.route.navigate(['/logIn']):""
     }
 }

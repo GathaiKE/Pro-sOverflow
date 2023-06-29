@@ -11,10 +11,6 @@ import { CommonModule } from '@angular/common';
 export class FeedbackComponent {
   @Input() message!: null | string;
   @Output() clicked: EventEmitter<string> = new EventEmitter();
-
-  onClick(msg: string) {
-    this.clicked.emit(msg);
-  }
   
   onClose() {
     this.message = null;

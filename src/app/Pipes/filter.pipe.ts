@@ -6,23 +6,6 @@ import { Question } from '../Interfaces/questionInterfaces';
   standalone: true
 })
 export class FilterPipe implements PipeTransform {
-// search:string=""
-
-//   transform(questions: Question[],searchString: string): Question[] {
-
-//     if(questions.length===0){
-//       return questions
-//     }
-//       let filteredQuestions:Question[]=[]
-
-//       for(let question of questions){
-//         if(question.title.toLocaleLowerCase().includes(searchString.toLocaleLowerCase())){
-//           filteredQuestions.push(question)
-//         }
-
-//       }
-//     return filteredQuestions;
-//   }
 transform(questions: Question[], searchString: string): Question[] {
   if (!searchString) {
     return questions;

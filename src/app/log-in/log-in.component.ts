@@ -16,7 +16,7 @@ import { LogInError } from '../Interfaces/userInterface';
   styleUrls: ['./log-in.component.css']
 })
 export class LogInComponent {
-form:any={
+form={
   email:"",
   password:""
 }

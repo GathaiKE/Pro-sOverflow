@@ -1,0 +1,48 @@
+<div class="bg-black flex flex-col justify-center items-center h-screen p-8">
+    <div class="bg-primary-light md:w-cont p-5 text-white md:h-fit w-full my-auto">
+        <h1 class="font-irish text-gold text-2xl md:text-4xl text-center">Update user</h1>
+        <form [formGroup]="form" (ngSubmit)="form" class="h-fixed">
+            <div class="flex w-full my-5 flex-col form-group">
+                <label for="profile picture">Profile Picture: </label>
+                <input type="text " placeholder="Enter a valid image link" formControlName="profile_pic">
+            </div>
+            <div class="flex gap-3">
+                <div class="w-1/2">
+                    <!-- <span *ngIf="!fname.valid && fname.touched" class="text-red-500">
+                        <p>This field is required*</p>
+                    </span> -->
+                    <div class="flex w-full my-5 flex-col form-group" >
+                        <label for="fname">First Name: </label>
+                        <input type="text" class=" active:ring-offset-green" formControlName="first_name" placeholder="John">
+                    </div>
+                </div>
+                <div class="w-1/2">
+                    <!-- <span *ngIf="!lname.valid && lname.touched" class="text-red-500 m-0 p-0">
+                        <p>This field is required*</p>
+                    </span> -->
+                    <div class="flex w-full my-5 flex-col form-group">
+                        <label for="sname">Last Name: </label>
+                        <input type="text" placeholder="Doe" formControlName="last_name">
+                    </div>
+                </div>
+            </div>
+            <!-- <div *ngIf="!email.valid && email.touched" class="text-red-500 m-0 p-0">
+                <p>This field is required*</p>
+            </div> -->
+            <div class="flex w-full my-5 flex-col form-group">
+                <label for="email">Email:</label>
+                <input type="email" placeholder="johndoe22@gmail.com" formControlNamee="email" >
+            </div>
+            <!-- <div *ngIf="!password.valid && password.touched" class="text-red-500">
+                <p>This field is required*</p>
+            </div> -->
+            <div class="flex w-full my-5 flex-col form-group">
+                <label for="password">Password:</label>
+                <input type="password" placeholder="*********" formControlName="password" >
+            </div>
+            <div class="flex justify-center w-full my-5">
+                <button class="bg-green font-irish p-2 text-white"  type="submit" >Update</button>
+            </div>
+        </form>
+    </div>
+</div>

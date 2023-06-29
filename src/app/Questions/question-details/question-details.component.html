@@ -21,7 +21,7 @@
                                     <img src="../../../assets/unheart.png" alt="unlike" class="bg-white h-10 p-2 rounded cursor-pointer active:bg-gray-300" (click)="downvote(answer.answer_id)">
                                 </span>
                                 <span class="w-1/2 flex justify-evenly items-center md:space-x-3 md:w-full">
-                                    <a class="bg-gray-300 text-black px-2 active:bg-white cursor-pointer active:text-black w-fit rounded h-7 " *ngIf="answer.user_id==activeUserId" [routerLink]="['/comment',answer.answer_id]" >Update</a>
+                                    <a class="bg-gray-300 text-black px-2 active:bg-white cursor-pointer active:text-black w-fit rounded h-7 " (click)="update(answer.answer_id)" *ngIf="answer.user_id==activeUserId">Update</a>
                                     <a class="bg-gray-300 text-black px-2 active:bg-white cursor-pointer active:text-black w-fit rounded h-7 "[routerLink]="['/comment',answer.answer_id]" >Comment</a>
                                 </span>
                             </div>
@@ -38,7 +38,7 @@
                 <div>
                     <form (ngSubmit)="submit(form)" #form="ngForm" class="flex flex-col md:flex-row">
                     <textarea name="answer" id="answer" cols="30" rows="10" placeholder="Make your answer as clear as possible." class="h-36 md:w-3/4 text-black rounded sm p-2" required minlength="20" ngModel required answer #answer></textarea>
-                    <button class="bg-gray-300 text-black p-2 w-1/3 active:bg-white h-11 md:self-end" type="submit">Post Answer</button>
+                    <button class="bg-gray-300 text-black p-2 w-1/3 active:bg-white h-11 md:self-end" type="submit">{{action}} Answer</button>
                     </form>
                 </div>
                 

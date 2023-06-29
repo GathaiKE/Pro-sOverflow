@@ -47,4 +47,25 @@ export class UserEffectaService {
       })
     )
   })
+
+  getSingleUser$=createEffect(()=>{
+    return this.action$.pipe(
+      ofType(UserActions.getLoggedUser),
+      mergeMap(action=> this.UserService.getUser().pipe(
+        map(user=> UserActions.getLoggedUserSuccess({user}))
+      )),
+      catchError(error=> of(UserActions.getLoggedUserFailure({error})))
+    )
+  })
+
+  updateUser$=createEffect(()=>{
+    return this.action$.pipe(
+      ofType(UserActions.updateUser),
+      mergeMap(action=>this.UserService.updateUser(action.user).pipe(
+        map(message=>UserActions.updateUserSuccess({message:message})),
+        tap(()=> this.store.dispatch(UserActions.getLoggedUser()))
+      )),
+      catchError(error=> of(UserActions.updateUserFailure(error)))
+    )
+  })
 }

@@ -54,3 +54,6 @@ export interface CurrentUser{
 export interface LogInError{
     error:string
 }
+export interface UserUpdateSuccess{
+    message:string
+}

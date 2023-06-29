@@ -1,8 +1,8 @@
 import { createAction, props } from "@ngrx/store";
-import { Answer, AnswerRequest, PostAnswerSuccess } from "src/app/Interfaces/questionInterfaces";
+import { Answer, AnswerRequest, PostAnswerSuccess, UpdateAnswerSuccess } from "src/app/Interfaces/questionInterfaces";
 
 //Post Answer
-export const postAnswer=createAction('[Question]-PostAnswer',props<{question_id:string,answer:string}>())
+export const postAnswer=createAction('[Question]-PostAnswer',props<{question_id:string,answer:AnswerRequest}>())
 export const postAnswerSuccess=createAction('[Question]-PostAnswerSuccess',props<{message:PostAnswerSuccess}>())
 export const postAnswerFailure=createAction('[Question]-PostAnswerFailure',props<{error:string}>())
 
@@ -15,8 +15,8 @@ export const getAnswerFailure=createAction('[Question]-GetAnswerFailure',props<{
 export const GetSingleQuestionAnswers=createAction('[Answer]-GetSingleQuestionAnswers',props<{question_id:string}>())
 
 //UpdateAnswer
-export const updateAnswer=createAction('[Question]-UpdateAnswer',props<{answer_id:string}>())
-export const updateAnswerSuccess=createAction('[Question]-UpdateAnswerSuccess',props<{message:string}>())
+export const updateAnswer=createAction('[Question]-UpdateAnswer',props<{answer_id:string,answer:AnswerRequest}>())
+export const updateAnswerSuccess=createAction('[Question]-UpdateAnswerSuccess',props<{message:UpdateAnswerSuccess}>())
 export const updateAnswerFailure=createAction('[Question]-UpdateAnswerFailure',props<{error:string}>())
 
 //DeleteAnswer

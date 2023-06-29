@@ -82,4 +82,14 @@ export class QuestionEffectsService {
     )
   })
 
+  updateQuestion$=createEffect(()=>{
+    return this.action$.pipe(
+      ofType(QuestionActions.updateQuestion),
+      mergeMap(action=> this.QuestionService.updateQuestion(action.question_id,action.updatedQuestion).pipe(
+        map(message=> QuestionActions.updateQuestionSuccess({message}))
+      )),
+      catchError(error=>of(QuestionActions.updateQuestionFailure({error})))
+    )
+  })
+
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LogInSuccess, LogRequest, NewUser, RegisterSuccess, User } from '../Interfaces/userInterface';
+import { LogInSuccess, LogRequest, NewUser, RegisterSuccess, User, UserUpdateSuccess } from '../Interfaces/userInterface';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -24,8 +24,8 @@ export class UsersService {
   }
 
   //Get single user details
-  getUser():Observable<User>{
-    return this.http.get<User>(`http://localhost:4000/users/getById`,this.headers)
+  getUser():Observable<User[]>{
+    return this.http.get<User[]>(`http://localhost:4000/users/getById`,this.headers)
   }
 
   //Get All Users
@@ -34,7 +34,7 @@ export class UsersService {
   }
 
   //Update user Details
-  updateUser(updatedUser:User):Observable<User>{
-    return this.http.put<User>('http://localhost:4000/users/update',updatedUser,this.headers)
+  updateUser(updatedUser:User):Observable<UserUpdateSuccess>{
+    return this.http.put<UserUpdateSuccess>('http://localhost:4000/users/update',updatedUser,this.headers)
   }
 }

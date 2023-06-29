@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Answer, AnswerRequest, PostAnswerSuccess } from '../Interfaces/questionInterfaces';
+import { Answer, AnswerRequest, PostAnswerSuccess, UpdateAnswerSuccess } from '../Interfaces/questionInterfaces';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -16,17 +16,17 @@ export class AnswersService {
     return this.http.get<Answer[]>(`http://localhost:4000/answers/all`,headers)
   }
 
-  postAnswer(answer:string,question_id:string):Observable<any>{
+  postAnswer(answer:AnswerRequest,question_id:string):Observable<PostAnswerSuccess>{
     // console.log(answer)
     const token = localStorage.getItem('token') as string;
     const headers= {headers: new HttpHeaders().set('token',token)}
-    return this.http.post<any>(`http://localhost:4000/answers/post/${question_id}`,answer,headers)
+    return this.http.post<PostAnswerSuccess>(`http://localhost:4000/answers/post/${question_id}`,answer,headers)
   }
 
-  updateAnswer(answer_id:string,updatedAnswer:Answer):Observable<Answer>{
+  updateAnswer(answer_id:string,updatedAnswer:AnswerRequest):Observable<UpdateAnswerSuccess>{
     const token = localStorage.getItem('token') as string;
     const headers= {headers: new HttpHeaders().set('token',token)}
-    return this.http.put<Answer>(`http://localhost:4000/answers//update/${answer_id}`,updatedAnswer,headers)
+    return this.http.put<UpdateAnswerSuccess>(`http://localhost:4000/answers//update/${answer_id}`,updatedAnswer,headers)
   }
 
   deleteAnswer(answer_id:string):Observable<Answer>{

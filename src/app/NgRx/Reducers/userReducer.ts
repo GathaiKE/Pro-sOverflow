@@ -1,4 +1,4 @@
-import { User } from 'src/app/Interfaces/userInterface'
+import { User, UserUpdateSuccess } from 'src/app/Interfaces/userInterface'
 import * as UserActions from '../Actions/userActions'
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store'
 import { state } from '@angular/animations'
@@ -8,7 +8,7 @@ export interface UserRedInterface{
     error:string
     logInSuccess:string
     logInFailure:string
-    updateUserSuccess:string
+    updateUserSuccess:UserUpdateSuccess
     updateUserFailure:string
     deactivateSuccess:string
     deactivateFailure:string
@@ -23,7 +23,9 @@ export interface UserRedInterface{
     profile_pic:string
     first_name:string
     email:string
-    second_name:string
+    second_name:string,
+    loggedUser:User[]
+    loggedUserError:string
 }
 
 const initialState:UserRedInterface={
@@ -31,7 +33,7 @@ const initialState:UserRedInterface={
     error:"",
     logInSuccess:"",
     logInFailure:"",
-    updateUserSuccess:"",
+    updateUserSuccess:{message:""},
     updateUserFailure:"",
     deactivateSuccess:"",
     deactivateFailure:"",
@@ -47,6 +49,8 @@ const initialState:UserRedInterface={
     first_name:'',
     email:'',
     second_name:'',
+    loggedUser:[],
+    loggedUserError:""
 }
 
 export const UserReducer=createReducer(
@@ -66,6 +70,21 @@ on(UserActions.getUsersFailure, (state,action):UserRedInterface=>{
         ...state,
         users:[],
         error:action.error
+    }
+}),
+on(UserActions.getLoggedUserSuccess, (state,action):UserRedInterface=>{
+    return {
+        ...state,
+        loggedUser:action.user,
+        loggedUserError:'a'
+    }
+}),
+
+on(UserActions.getLoggedUserFailure, (state,action):UserRedInterface=>{
+    return {
+        ...state,
+        loggedUser:[],
+        loggedUserError:action.error
     }
 }),
 
@@ -111,7 +130,7 @@ on(UserActions.updateUserFailure, (state,action):UserRedInterface=>{
     return {
         ...state,
         updateUserFailure:action.error,
-        updateUserSuccess:""
+        updateUserSuccess:{message:""}
     }
 }),
 
@@ -126,7 +145,7 @@ on(UserActions.deactivateSuccess, (state,action):UserRedInterface=>{
 on(UserActions.deactivateFailure, (state,action):UserRedInterface=>{
     return {
         ...state,
-        updateUserSuccess:"",
+        updateUserSuccess:{message:""},
         updateUserFailure:action.error
     }
 }),
