@@ -1,7 +1,9 @@
-import { User, UserUpdateSuccess } from 'src/app/Interfaces/userInterface'
+import { DeleteUserFailure, DeleteUserSuccess, GetQuestionsError, GetUserError, User, UserUpdateSuccess } from 'src/app/Interfaces/userInterface'
 import * as UserActions from '../Actions/userActions'
+import * as AdminActions from '../Actions/AdminActions'
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store'
 import { state } from '@angular/animations'
+import { Question } from 'src/app/Interfaces/questionInterfaces'
 
 export interface UserRedInterface{
     users:User[]
@@ -26,6 +28,12 @@ export interface UserRedInterface{
     second_name:string,
     loggedUser:User[]
     loggedUserError:string
+    revokeSuccess:DeleteUserSuccess
+    RevokeFailure:DeleteUserFailure
+    selectedUserQuestions:Question[]
+    selectedUserError:GetQuestionsError
+    getUsersSuccess:User[]
+    getUsersFailure:GetUserError
 }
 
 const initialState:UserRedInterface={
@@ -50,7 +58,13 @@ const initialState:UserRedInterface={
     email:'',
     second_name:'',
     loggedUser:[],
-    loggedUserError:""
+    loggedUserError:"",
+    revokeSuccess:{message:""},
+    RevokeFailure:{error:""},
+    selectedUserQuestions:[],
+    selectedUserError:{error:""},
+    getUsersSuccess:[],
+    getUsersFailure:{error:""}
 }
 
 export const UserReducer=createReducer(
@@ -172,11 +186,57 @@ on(UserActions.registerSuccess, (state,action):UserRedInterface=>{
         registerFailure:"",
         registerSuccess:action.message
     }
-})
+}),
+
+on(AdminActions.revokeSuccess, (state,action):UserRedInterface=>{
+    return {
+        ...state,
+        revokeSuccess:action.message,
+        RevokeFailure:{error:""}
+    }
+}),
+
+on(AdminActions.revokeFailure, (state,action):UserRedInterface=>{
+    return {
+        ...state,
+        revokeSuccess:{message:""},
+        RevokeFailure:action.error
+    }
+}),
+on(AdminActions.SelectedUserQuestionsFailure, (state,action):UserRedInterface=>{
+    return {
+        ...state,
+        selectedUserError:action.error,
+        selectedUserQuestions:[]
+    }
+}),
+
+on(AdminActions.SelectedUserQuestionsSuccess, (state,action):UserRedInterface=>{
+    return {
+        ...state,
+        selectedUserError:{error:""},
+        selectedUserQuestions:action.questions
+    }
+}),
+
+on(AdminActions.getAllUsersSuccess, (state,action):UserRedInterface=>{
+    return {
+        ...state,
+        getUsersSuccess:action.users,
+        getUsersFailure:{error:""}
+    }
+}),
+on(AdminActions.getAllUsersFailure, (state,action):UserRedInterface=>{
+    return {
+        ...state,
+        getUsersSuccess:[],
+        getUsersFailure:action.error
+    }
+}),
 )
 
 const getUsersState=createFeatureSelector<UserRedInterface>('users')
-export const getUsers=createSelector(getUsersState, (state)=>state.users)
+export const getUsers=createSelector(getUsersState, (state)=>state.getUsersSuccess)
 export const getUsersError=createSelector(getUsersState, (state)=>state.error)
 export const getUserId=createSelector(getUsersState, (state)=> state.user_id)
 export const getSingleUser=createSelector(getUsers,getUserId, (users,user_id)=>{

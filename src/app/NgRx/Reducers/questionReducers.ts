@@ -145,7 +145,8 @@ export const QuestionsReducer=createReducer(
             Tags:[],
             tagErr:action.error
         }
-    })
+    }),
+    
 )
 
 const getQuestionState=createFeatureSelector<questionReducerInterface>('question')

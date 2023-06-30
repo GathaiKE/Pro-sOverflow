@@ -30,7 +30,7 @@ export class UsersService {
 
   //Get All Users
   getUsers(page:number):Observable<User[]>{
-    return this.http.get<User[]>(`http://localhost:4000/users/getUsers/${page}`,this.headers)
+    return this.http.get<User[]>(`http://localhost:4000/users/getUsers/1`,this.headers)
   }
 
   //Update user Details

@@ -30,6 +30,7 @@ import { UserEffectaService } from './NgRx/Effects/user-effecta.service';
 import { FilterPipe } from './Pipes/filter.pipe';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { AccessService } from './Services/access.service';
+import { AdminEffectsService } from './NgRx/Effects/admin-effects.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { AccessService } from './Services/access.service';
     FilterPipe,
     FeedbackComponent,
     StoreModule.forRoot({question:QuestionsReducer,answer:answerReducer, users:UserReducer}),
-    EffectsModule.forRoot([QuestionEffectsService,AnswerEffectsService,UserEffectaService]),
+    EffectsModule.forRoot([QuestionEffectsService,AnswerEffectsService,UserEffectaService,AdminEffectsService]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [],

@@ -57,3 +57,15 @@ export interface LogInError{
 export interface UserUpdateSuccess{
     message:string
 }
+export interface DeleteUserSuccess{
+    message:string
+}
+export interface DeleteUserFailure{
+    error:string
+}
+export interface GetQuestionsError{
+    error:string
+}
+export interface GetUserError{
+    error:string
+}
