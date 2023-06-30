@@ -1,0 +1,25 @@
+<app-header></app-header>
+
+<div class="flex">
+    <app-menu></app-menu>
+    <div class="w-full text-white md:border-x-2 border-l-white md:h-screen">
+        <form class="bg-primary-dark h-full" [formGroup]="form" (ngSubmit)="form">
+            <div class="w-70% m-auto">
+                <label for="title">Title</label>
+                <input type="text" formControlName="title" placeholder="Add a clear and descriptive title" class="focus:outline-none w-96">
+            </div>
+            <div class=" flex flex-col p-2 gap-10">
+                <p class="md:text-xl font-semibold">Make your Question as clear as possible to help other users understand you clearly</p>
+                <div class="pl-6 flex flex-col md:flex-row">
+                    <textarea name="question" id="question" cols="30" rows="10" placeholder="Write your question here" class="h-36 md:w-2/3 text-sm md:text-base text-black p-4 focus:outline-none" formControlName="body"></textarea>
+                </div>
+            </div>
+            <span class="flex">
+                    <button type="button" class="w-20 bg-gray-300 text-sm text-black p-2 active:bg-white" (click)="onSubmit()">Update</button>
+                </span>
+        </form>
+                
+    </div>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,8 @@
+<div class="fixed top-0 left-0 w-full h-full z-10 flex justify-center items-center" *ngIf="message" (click)="onClose()">
+    <div class="fixed m-auto bg-white gap-6 p-10 font-bold flex flex-col opacity-100" >
+        <span (click)="onClose()" class=" flex self-end cursor-pointer">X</span>
+        <div>
+            <p>{{message}}</p>
+        </div>
+    </div>
+</div>

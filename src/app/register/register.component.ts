@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import * as UserActions from '../NgRx/Actions/userActions'
+import { AppState } from '../NgRx/AppState';
 
 @Component({
   selector: 'app-register',
@@ -12,8 +15,17 @@ import { FormsModule, NgForm } from '@angular/forms';
 })
 export class RegisterComponent {
 
+form={
+  profile_pic:"",
+  first_name:"",
+  last_name:"",
+  email:"",
+  password:""
+}
+
+constructor(private Store:Store<AppState>, private router:Router){}
 
   submit(form:NgForm){
-    console.log(form);
+    this.Store.dispatch(UserActions.register(form.value))
   }
 }
