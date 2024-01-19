@@ -1,22 +1,40 @@
 import { Injectable } from '@angular/core';
-import { User } from '../Interfaces/userInterface';
+import { LogInSuccess, LogRequest, NewUser, RegisterSuccess, User, UserUpdateSuccess } from '../Interfaces/userInterface';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
+  token = localStorage.getItem('token') as string;
+  headers= {headers: new HttpHeaders().set('token',this.token)}
+  constructor(private http:HttpClient) { }
   
-  constructor() { }
-  Users:User[]=[
-    {
-      user_id:'1',
-      profile_image:'../../assets/hero.jpeg',
-      first_name:'Brian',
-      last_name:'Gathai',
-      email:'briannjeri9@gmail.com',
-      role:'admin',
-      password:'1234',
-      website:'https://github.com/GathaiKE/E-Commerce-Nodejshttps://github.com/GathaiKE/E-Commerce-Nodejs'
-    }
-  ]
+  //Register
+  register(newuser:NewUser):Observable<RegisterSuccess>{
+    return this.http.post<RegisterSuccess>('http://localhost:4000/users/register',newuser)
+  }
+
+  //logIn
+  logIn(logRequest:LogRequest):Observable<LogInSuccess>{
+    // console.log(logRequest);
+    
+    return this.http.post<LogInSuccess>('http://localhost:4000/users/logIn',logRequest)
+  }
+
+  //Get single user details
+  getUser():Observable<User[]>{
+    return this.http.get<User[]>(`http://localhost:4000/users/getById`,this.headers)
+  }
+
+  //Get All Users
+  getUsers(page:number):Observable<User[]>{
+    return this.http.get<User[]>(`http://localhost:4000/users/getUsers/1`,this.headers)
+  }
+
+  //Update user Details
+  updateUser(updatedUser:User):Observable<UserUpdateSuccess>{
+    return this.http.put<UserUpdateSuccess>('http://localhost:4000/users/update',updatedUser,this.headers)
+  }
 }

@@ -1,19 +1,19 @@
 <div class="flex bg-hdr text-white text-center align-middle px-1 py-2">
     <h1 class="font-irish py-3 text-gold text-3xl cursor-pointer active:text-primary-light flex flex-nowrap min-w-fit mr-auto">Pro's Overflow</h1>
     <div class=" h-full  srch:flex items-center m-auto gap-0 hidden">
-        <input type="text" class="w-96  md:block rounded-r-none " placeholder="search">
-        <button class="bg-primary-light w-fit m-0 py-2 px-5 md:rounded-none md:rounded-r-2xl active:text-primary-light active:bg-white">search</button>
+        <input type="text" class="w-96  md:block rounded-r-none " placeholder="search" [(ngModel)]="search">
+        <button class="bg-primary-light w-fit m-0 py-2 px-5 md:rounded-none md:rounded-r-2xl active:text-primary-light active:bg-white" (click)="searchMethod()">search</button>
     </div>
     
     <div class="flex gap-4 ">
         <div class="items-center hidden srch:flex">
-            <a href="#" class="mx-auto py-1 px-2 font-bold bg-primary-light text-center rounded-full md:rounded-3xl sm:text-sm md:block min-w-fit">Log Out</a>
+            <a href="#" class="mx-auto py-1 px-2 font-bold bg-primary-light text-center rounded-full md:rounded-3xl sm:text-sm md:block min-w-fit" (click)="logout()">Log Out</a>
         </div>
         
         <div class="md:flex hidden items-center flex-col md:flex-row float-right">
             <div class="flex-col-reverse cursor-pointer" [routerLink]="['/profile']">
-                <img src="../../assets/person-circle.svg" alt="User Profile" class="bg-primary-light rounded-full w-12 mx-auto">
-                <p class="font-bold">User Name</p>
+                <img src="{{profile_pic}}" alt="User Profile" class="bg-primary-light rounded-full w-12 mx-auto">
+                <p class="font-bold">{{first_name}} {{second_name}}</p>
             </div>
         </div>
 
@@ -27,11 +27,12 @@
 
         <div class="" [hidden]="!showMenu">
             <div id="menu" class="absolute flex flex-col w-1/3 items-center self-end py-2 mt-16 space-y-6 font-bold bg-gray-500 text-white right-1 drop-shadow-md z-10">
-                <a href="" class="hover:bg-gray-700 w-full p-2">Search</a>
+                <!-- <a href="" class="hover:bg-gray-700 w-full p-2">Search</a> -->
                 <a [routerLink]="['/home']" routerLinkActive="text-gold" class="hover:bg-gray-700 w-full p-2">Home</a>
                 <a [routerLink]="['/profile']" routerLinkActive="text-gold" class="hover:bg-gray-700 w-full p-2">Profile</a>
                 <a [routerLink]="['/tags']" routerLinkActive="text-gold" class="hover:bg-gray-700 w-full p-2">Tags</a>
-                <a [routerLink]="['/admin']" routerLinkActive="text-gold" class="hover:bg-gray-700 w-full p-2">Admin</a>
+                <a [routerLink]="['/admin']" routerLinkActive="text-gold" class="hover:bg-gray-700 w-full p-2" *ngIf="(isAdmin$=='admin')">Admin</a>
+                <a [routerLink]="['']" class="hover:bg-gray-700 w-full p-2" (click)="logout()">log Out</a>
             </div>
         </div>
     </div>

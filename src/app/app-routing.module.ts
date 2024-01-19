@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router'
 
 const routes: Routes = [
   {path:'',loadComponent:()=>import('./landing/landing.component').then(c=>c.LandingComponent) },
@@ -10,10 +10,12 @@ const routes: Routes = [
   {path:'profile',loadComponent:()=>import('./profile/profile.component').then(c=>c.ProfileComponent) },
   {path:'ask',loadComponent:()=>import('./Questions/ask-question/ask-question.component').then(c=>c.AskQuestionComponent) },
   {path:'details/:question_id',loadComponent:()=>import('./Questions/question-details/question-details.component').then(c=>c.QuestionDetailsComponent) },
-  {path:'stats',loadComponent:()=>import('./Questions/question-stats/question-stats.component').then(c=>c.QuestionStatsComponent) },
+  {path:'stats/:question_id',loadComponent:()=>import('./Questions/question-stats/question-stats.component').then(c=>c.QuestionStatsComponent) },
   {path:'admin',loadComponent:()=>import('./admin/admin.component').then(c=>c.AdminComponent) },
-  {path:'comment',loadComponent:()=>import('./Questions/comment/comment.component').then(c=>c.CommentComponent) },
-  {path:'tags',loadComponent:()=>import('./mobiletags/mobiletags.component').then(c=>c.MobiletagsComponent) }
+  {path:'comment/:answer_id',loadComponent:()=>import('./Questions/comment/comment.component').then(c=>c.CommentComponent) },
+  {path:'tags',loadComponent:()=>import('./mobiletags/mobiletags.component').then(c=>c.MobiletagsComponent) },
+  {path:'update/:question_id',loadComponent:()=>import('./update-question/update-question.component').then(c=>c.UpdateQuestionComponent) },
+  {path:'updateuser/:user_id',loadComponent:()=>import('./update-user/update-user.component').then(c=>c.UpdateUserComponent) }
 ];
 
 @NgModule({
@@ -21,7 +23,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-
-
-// ,
-//   

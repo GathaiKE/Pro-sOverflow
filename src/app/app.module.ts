@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +17,20 @@ import { QuestionStatsComponent } from './Questions/question-stats/question-stat
 import { RegisterComponent } from './register/register.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { CommentComponent } from './Questions/comment/comment.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { QuestionEffectsService } from './NgRx/Effects/question-effects.service';
+import { QuestionsReducer } from './NgRx/Reducers/questionReducers';
+import { HttpClientModule } from '@angular/common/http';
+import { answerReducer } from './NgRx/Reducers/answerReducers';
+import { AnswerEffectsService } from './NgRx/Effects/answer-effects.service';
+import { UserReducer } from './NgRx/Reducers/userReducer';
+import { UserEffectaService } from './NgRx/Effects/user-effecta.service';
+import { FilterPipe } from './Pipes/filter.pipe';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { AccessService } from './Services/access.service';
+import { AdminEffectsService } from './NgRx/Effects/admin-effects.service';
 
 @NgModule({
   declarations: [
@@ -25,22 +39,21 @@ import { CommentComponent } from './Questions/comment/comment.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AdminComponent,
-    FooterComponent,
-    HeaderComponent,
-    HomeComponent,
-    LandingComponent,
-    LogInComponent,
-    MenuComponent,
-    ProfileComponent,
-    AskQuestionComponent,
-    QuestionDetailsComponent,
-    QuestionStatsComponent,
-    RegisterComponent,
-    ResetPasswordComponent,
-    CommentComponent
+    HttpClientModule,
+    FilterPipe,
+    FeedbackComponent,
+    StoreModule.forRoot({question:QuestionsReducer,answer:answerReducer, users:UserReducer}),
+    EffectsModule.forRoot([QuestionEffectsService,AnswerEffectsService,UserEffectaService,AdminEffectsService]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+
+  constructor(private Servic:AccessService){}
+
+  
+
+  
+}
